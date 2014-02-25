@@ -1,0 +1,311 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"str",
+				"strip"
+			],
+			[
+				"s",
+				"school"
+			],
+			[
+				"stu",
+				"student_id"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "views/layout.jade",
+			"settings":
+			{
+				"buffer_size": 108,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/features/Multi-Tenant.feature",
+			"settings":
+			{
+				"buffer_size": 311,
+				"line_ending": "Unix",
+				"name": "Feature: Search courses"
+			}
+		},
+		{
+			"file": "test/features/step_definitions/steps.rb",
+			"settings":
+			{
+				"buffer_size": 258,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/features/support/env.rb",
+			"settings":
+			{
+				"buffer_size": 539,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/johnsextro/workspace/podclock/test/features/support/env.rb",
+		"/Users/johnsextro/workspace/podclock/test/support/env.rb",
+		"/Users/johnsextro/Dropbox/ImagineAgile/installment 1.html",
+		"/Users/johnsextro/Library/Caches/TemporaryItems/Outlook Temp/adhoc_ddl[1].sql",
+		"/Users/johnsextro/Documents/INC000000045614 Mule Logs.xml",
+		"/Users/johnsextro/Downloads/Subscription Notification DDL.sql",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/schedule_service.py",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/team.py",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/app.yaml",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/load.py",
+		"/Users/johnsextro/Downloads/Todolistbackup.txt",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/cron.yaml",
+		"/Users/johnsextro/Documents/Titanium_Studio_Workspace/saintsApp/SaintsServer/schedule.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_insert.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_find_with_selector.py",
+		"/Users/johnsextro/workspace/mongo_class/week2/blog.py",
+		"/Users/johnsextro/workspace/mongo_class/week2/user.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_find.py",
+		"/Users/johnsextro/workspace/mongo_class/week2/2.2.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_dot_notation.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_update.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_find_and_modify.py",
+		"/Users/johnsextro/Downloads/lesson_files/using_limit_skip_sort.py",
+		"/Users/johnsextro/Downloads/lesson_files/read_reddit.py",
+		"/Users/johnsextro/Downloads/node-v0.8.18/README.md"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"		# t = Team(teamId=\"1234\", coach = \"Edmunds\", school = \"St Joes\",\n		# 	grade = 5, year = 2013, \n		# 	schedule = \"{game_date='4/1/2013', opponent='St. J & A', location='St. Joes'}\")\n		# t.put()"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "views/layout.jade",
+					"settings":
+					{
+						"buffer_size": 108,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7,
+								7
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test/features/Multi-Tenant.feature",
+					"settings":
+					{
+						"buffer_size": 311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"auto_name": "Feature: Search courses",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test/features/step_definitions/steps.rb",
+					"settings":
+					{
+						"buffer_size": 258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								45,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "test/features/support/env.rb",
+					"settings":
+					{
+						"buffer_size": 539,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								356,
+								281
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true
+}
