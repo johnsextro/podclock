@@ -1,4 +1,5 @@
 var clock = require("../controller/clock.js");
+var clock2 = require("../controller/clock.js");
  
 describe("runTheClock", function () {
   it("time should be greater than 0", function () {
@@ -31,6 +32,14 @@ describe("runTheClock", function () {
 	nextElapsedTime = clock.getTime();
 	setTimeout( function() {
 		expect(nextElapsedTime).toBeGreaterThan(elapsedTime);
+	}, 10);
+  });
+
+  it("able to create 2 clocks", function () {
+    clock.start();
+	setTimeout( function() {
+		clock2.start();
+		expect(clock1.getTime()).toBeGreaterThan(clock2.getTime());
 	}, 10);
   });
 
