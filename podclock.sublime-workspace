@@ -20,35 +20,27 @@
 	"buffers":
 	[
 		{
-			"file": "views/layout.jade",
+			"file": "tests/features/step_definitions/steps.js",
 			"settings":
 			{
-				"buffer_size": 108,
+				"buffer_size": 324,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "test/features/Multi-Tenant.feature",
+			"file": "tests/features/support/world.js",
 			"settings":
 			{
-				"buffer_size": 311,
+				"buffer_size": 467,
 				"line_ending": "Unix",
-				"name": "Feature: Search courses"
+				"name": "var zombie = require('zombie')"
 			}
 		},
 		{
-			"file": "test/features/step_definitions/steps.rb",
+			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 258,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "test/features/support/env.rb",
-			"settings":
-			{
-				"buffer_size": 539,
+				"buffer_size": 353,
 				"line_ending": "Unix"
 			}
 		}
@@ -77,6 +69,11 @@
 	},
 	"file_history":
 	[
+		"/Users/johnsextro/workspace/podclock/package.json",
+		"/Users/johnsextro/workspace/podclock/views/layout.jade",
+		"/Users/johnsextro/workspace/podclock/test/features/step_definitions/steps.rb",
+		"/Users/johnsextro/workspace/podclock/tests/features/Multi-Tenant.feature",
+		"/Users/johnsextro/workspace/podclock/test/features/Multi-Tenant.feature",
 		"/Users/johnsextro/workspace/podclock/test/features/support/env.rb",
 		"/Users/johnsextro/workspace/podclock/test/support/env.rb",
 		"/Users/johnsextro/Dropbox/ImagineAgile/installment 1.html",
@@ -137,76 +134,23 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "views/layout.jade",
+					"file": "tests/features/step_definitions/steps.js",
 					"settings":
 					{
-						"buffer_size": 108,
+						"buffer_size": 324,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								7,
-								7
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "test/features/Multi-Tenant.feature",
-					"settings":
-					{
-						"buffer_size": 311,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								311,
-								311
-							]
-						],
-						"settings":
-						{
-							"auto_name": "Feature: Search courses",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "test/features/step_definitions/steps.rb",
-					"settings":
-					{
-						"buffer_size": 258,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								45,
-								0
+								324,
+								324
 							]
 						],
 						"settings":
@@ -220,24 +164,53 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "test/features/support/env.rb",
+					"buffer": 1,
+					"file": "tests/features/support/world.js",
 					"settings":
 					{
-						"buffer_size": 539,
+						"buffer_size": 467,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								356,
-								281
+								286,
+								286
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
+							"auto_name": "var zombie = require('zombie')",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "package.json",
+					"settings":
+					{
+						"buffer_size": 353,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
@@ -306,6 +279,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 150.0,
+	"side_bar_width": 238.0,
 	"status_bar_visible": true
 }
