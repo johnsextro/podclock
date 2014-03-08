@@ -1,8 +1,9 @@
-var clock = require("../controller/clock.js");
+var Podclock = require('../controller/clock.js');
+var clock = new Podclock();
 var waiter = require("./waiter.js");
 
 describe("runTheClock", function () {
-  it("time should be greater than 0", function () {
+  it("after starting the clock, time should be greater than 0", function () {
 	clock.reset();
 	clock.start();
 	waiter.sleep(5);
@@ -25,7 +26,7 @@ describe("runTheClock", function () {
 	expect(clock.getTime()).toEqual(-1);
   });
 
-  it("time should always be increasing", function () {
+  it("after starting the clock, time should always be increasing", function () {
     clock.start();
 	waiter.sleep(5);
 	var elapsedTime = clock.getTime();
@@ -35,7 +36,7 @@ describe("runTheClock", function () {
 	expect(nextElapsedTime).toBeGreaterThan(elapsedTime);
   });
 
-  it("can not start the clock once started", function () {
+  it("can only start the clock once", function () {
 	clock.reset();
     clock.start();
 	waiter.sleep(5);
@@ -58,6 +59,22 @@ describe("runTheClock", function () {
 	expect(clock.getTime()).toBeLessThan(10);
   });
 
+  it("trying to pause the clock once paused has no effect", function () {
+   	clock.reset();
+	
+	clock.start();
+	waiter.sleep(5)
+	clock.pause();
+	waiter.sleep(5);
+	expect(clock.getTime()).toBeLessThan(10);
+	clock.pause();
+	waiter.sleep(5);
+	expect(clock.getTime()).toBeLessThan(10);
+	clock.resume();
+	waiter.sleep(5);
+	expect(clock.getTime()).toBeGreaterThan(9);
+  });
+
   it("pausing before starting the clock has no effect", function () {
    	clock.reset();
 	
@@ -75,6 +92,14 @@ describe("runTheClock", function () {
 	waiter.sleep(5);
 	clock.resume();
 	expect(clock.getTime()).toBeLessThan(10);
+  });
+
+  it("resuming before starting the clock has no effect", function () {
+   	clock.reset();
+	
+	clock.resume();
+	waiter.sleep(5)
+	expect(clock.getTime()).toEqual(-1);
   });
 
   it("resuming without a pause has no effect", function () {
@@ -101,4 +126,16 @@ describe("runTheClock", function () {
 	clock.resume();
 	expect(clock.getTime()).toBeLessThan(12);
   });
+
+  it("clock is an object that can be instantiated more than once", function () {
+   	clock.reset();
+	
+	clock.start();
+	waiter.sleep(5);
+	var secondClock = new Podclock();
+	secondClock.start();
+	waiter.sleep(5)
+	expect(clock.getTime()).toBeGreaterThan(secondClock.getTime());
+  });
+
 });    
