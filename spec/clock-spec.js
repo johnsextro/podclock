@@ -127,7 +127,7 @@ describe("runTheClock", function () {
 	expect(clock.getTime()).toBeLessThan(12);
   });
 
-  it("clock is an object that can be instantiated more than once", function () {
+  it("clock is a prototype that can be constructed more than once", function () {
    	clock.reset();
 	
 	clock.start();
