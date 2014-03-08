@@ -20,10 +20,13 @@
 	"buffers":
 	[
 		{
+			"contents": "",
 			"file": "tests/features/step_definitions/steps.js",
+			"file_size": -1,
+			"file_write_time": -1,
 			"settings":
 			{
-				"buffer_size": 324,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		},
@@ -31,7 +34,7 @@
 			"file": "tests/features/support/world.js",
 			"settings":
 			{
-				"buffer_size": 467,
+				"buffer_size": 0,
 				"line_ending": "Unix",
 				"name": "var zombie = require('zombie')"
 			}
@@ -40,7 +43,7 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 353,
+				"buffer_size": 167,
 				"line_ending": "Unix"
 			}
 		}
@@ -142,15 +145,15 @@
 					"file": "tests/features/step_definitions/steps.js",
 					"settings":
 					{
-						"buffer_size": 324,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								324,
-								324
+								0,
+								0
 							]
 						],
 						"settings":
@@ -168,15 +171,15 @@
 					"file": "tests/features/support/world.js",
 					"settings":
 					{
-						"buffer_size": 467,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								286,
-								286
+								0,
+								0
 							]
 						],
 						"settings":
@@ -197,7 +200,7 @@
 					"file": "package.json",
 					"settings":
 					{
-						"buffer_size": 353,
+						"buffer_size": 167,
 						"regions":
 						{
 						},

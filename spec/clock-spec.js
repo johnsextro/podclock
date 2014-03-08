@@ -58,6 +58,14 @@ describe("runTheClock", function () {
 	expect(clock.getTime()).toBeLessThan(10);
   });
 
+  it("pausing before starting the clock has no effect", function () {
+   	clock.reset();
+	
+	clock.pause();
+	waiter.sleep(5);
+	expect(clock.getTime()).toEqual(-1);
+  });
+
   it("able to pause and resume the clock", function () {
    	clock.reset();
 	
@@ -67,5 +75,30 @@ describe("runTheClock", function () {
 	waiter.sleep(5);
 	clock.resume();
 	expect(clock.getTime()).toBeLessThan(10);
+  });
+
+  it("resuming without a pause has no effect", function () {
+   	clock.reset();
+	
+	clock.start();
+	waiter.sleep(5)
+	clock.resume();
+	waiter.sleep(5)
+	expect(clock.getTime()).toBeGreaterThan(9);
+  });
+
+  it("able to pause/resume more than once", function () {
+   	clock.reset();
+	
+	clock.start();
+	waiter.sleep(5)
+	clock.pause();
+	waiter.sleep(5);
+	clock.resume();
+	waiter.sleep(5)
+	clock.pause();
+	waiter.sleep(5);
+	clock.resume();
+	expect(clock.getTime()).toBeLessThan(12);
   });
 });    
