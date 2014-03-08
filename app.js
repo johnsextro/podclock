@@ -42,7 +42,9 @@ express.compiler.compilers.less.compile = function(str, fn){
 // Routes
 
 app.get('/', routes.index);
-app.get('myclock', routes.myclock);
+app.get('/myclock', function(req, res){
+  res.render('myclock', { title: 'Podclock' })
+});
 
 app.listen(3000, function(){
   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
