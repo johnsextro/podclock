@@ -4,7 +4,9 @@
  */
 
 var express = require('express')
-  , routes = require('./routes');
+  , routes = require('./routes')
+  , socketio = require('socket.io')
+  , http = require('http');
 
 var app = module.exports = express.createServer();
 
@@ -46,6 +48,18 @@ app.get('/myclock', function(req, res){
   res.render('myclock', { title: 'Podclock' })
 });
 
-app.listen(3000, function(){
-  console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+// app.listen(3000, function(){
+//   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+// });
+
+var server = app.listen(3000, function(){
+  console.log("Express server listening on port " + app.address().port, app.settings.env);
+});
+
+var io = socketio.listen(server);
+var clients = {};
+ 
+var socketsOfClients = {};
+io.sockets.on('connection', function(socket) {
+  console.log("io socket connection")
 });
