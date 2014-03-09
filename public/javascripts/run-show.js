@@ -1,19 +1,22 @@
 var socket;
  
 socket = io.connect("http://localhost:3000");
+
+function pad(num, size) {
+    var s = "000000000" + num;
+    return s.substr(s.length-size);
+}
  
 $(function() {
- 
-  socket.on('timeUpdate', function(millis) {
+   socket.on('timeUpdate', function(millis) {
     // console.log(msg);
     x = millis / 1000
-	var seconds = Math.floor(x % 60)
+	var seconds = pad(Math.floor(x % 60),2);
 	x /= 60
-	var minutes = Math.floor(x % 60)
+	var minutes = pad(Math.floor(x % 60),2);
 	x /= 60
-	var hours = Math.floor(x % 24)
+	var hours = pad(Math.floor(x % 24),2);
 	x /= 24
     $('#podclock').text(hours + ":" + minutes + ":" + seconds);
   });
-
 });
