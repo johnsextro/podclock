@@ -9,6 +9,7 @@ var express = require('express')
   , http = require('http');
 
 var app = module.exports = express.createServer();
+var Podclock = require('./controller/clock.js');
 
 // Configuration
 
@@ -61,5 +62,11 @@ var clients = {};
  
 var socketsOfClients = {};
 io.sockets.on('connection', function(socket) {
-  console.log("io socket connection")
+  console.log("io socket connection");
+  var clock = new Podclock();
+  clock.start();
+  setInterval(function() {
+    socket.emit('timeUpdate', clock.getTime());
+    console.log(clock.getTime());
+  }, 1000);
 });
