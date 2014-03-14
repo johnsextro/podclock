@@ -57,12 +57,12 @@ var io = socketio.listen(server);
 var clients = {};
  
 var socketsOfClients = {};
+var clock;
 io.sockets.on('connection', function(socket) {
   console.log("io socket connection");
-  var clock;
   if (clock != undefined && clock.isClockStarted) {
     setInterval(function() {
-      socket.emit('timeUpdate', clock.getTime());
+      socket.broadcast.emit('timeUpdate', clock.getTime());
     }, 1000);
   }
 
