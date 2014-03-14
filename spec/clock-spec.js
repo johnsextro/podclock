@@ -11,6 +11,13 @@ describe("runTheClock", function () {
 	expect(elapsedTime).toBeGreaterThan(-1);
   });
 
+  it("check if the clock is started", function () {
+	clock.reset();
+	clock.start();
+	waiter.sleep(5);
+	expect(clock.isClockStarted()).toBeTruthy();
+  });
+
   it("if the clock hasn't stated the time returned should be -1", function () {
 	clock.reset();
 	waiter.sleep(5);
