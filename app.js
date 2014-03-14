@@ -63,9 +63,17 @@ var clients = {};
 var socketsOfClients = {};
 io.sockets.on('connection', function(socket) {
   console.log("io socket connection");
-  var clock = new Podclock();
+  var clock;
+  if (clock != undefined && clock.isClockStarted) {
+    setInterval(function() {
+      socket.emit('timeUpdate', clock.getTime());
+    }, 1000);
+  }
 
   socket.on('startClock', function () {
+    if (clock == undefined) {
+      clock = new Podclock();
+    }
     clock.start();
     setInterval(function() {
       socket.emit('timeUpdate', clock.getTime());
