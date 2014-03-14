@@ -15,7 +15,7 @@ function Podclock () {
 		if(this.startTime == -1) {
 			return this.startTime;
 		} else if (this.currentlyPaused) {
-			return this.startPauseTime - this.startTime;
+			return this.startPauseTime - this.pausedTime - this.startTime;
 		} else {
 			return (new Date().getTime() - this.pausedTime) - this.startTime;
 		}
