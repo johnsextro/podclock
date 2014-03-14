@@ -27,7 +27,6 @@ function wireLinksToActions() {
 
 function createHandlersForSocketMessages() {
   socket.on('timeUpdate', function(millis) {
-    // console.log(msg);
     x = millis / 1000
   var seconds = pad(Math.floor(x % 60),2);
   x /= 60

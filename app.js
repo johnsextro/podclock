@@ -49,10 +49,6 @@ app.get('/myclock', function(req, res){
   res.render('myclock', { title: 'Podclock' })
 });
 
-// app.listen(3000, function(){
-//   console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
-// });
-
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);
 });
