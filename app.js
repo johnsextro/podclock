@@ -64,9 +64,20 @@ var socketsOfClients = {};
 io.sockets.on('connection', function(socket) {
   console.log("io socket connection");
   var clock = new Podclock();
-  clock.start();
-  setInterval(function() {
-    socket.emit('timeUpdate', clock.getTime());
-    console.log(clock.getTime());
-  }, 1000);
+
+  socket.on('startClock', function () {
+    clock.start();
+    setInterval(function() {
+      socket.emit('timeUpdate', clock.getTime());
+    }, 1000);
+  });
+
+  socket.on('pauseClock', function () {
+    clock.pause();
+  });
+
+  socket.on('resumeClock', function () {
+    clock.resume();
+  });
+
 });
