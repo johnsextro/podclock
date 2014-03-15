@@ -9,20 +9,26 @@ function pad(num, size) {
 
 function startClock() {
   socket.emit('startClock');
+  $('#start-link').hide();
+  $('#pause-link').show();
 }
 
 function pauseClock() {
   socket.emit('pauseClock');
+  $('#pause-link').hide();
+  $('#resume-link').show();
 }
 
 function resumeClock() {
   socket.emit('resumeClock');
+  $('#resume-link').hide();
+  $('#pause-link').show();
 }
 
 function wireLinksToActions() {
   $('#start-link').click(startClock);
-  $('#pause-link').click(pauseClock);
-  $('#resume-link').click(resumeClock);
+  $('#pause-link').click(pauseClock).hide();
+  $('#resume-link').click(resumeClock).hide();
 }
 
 function createHandlersForSocketMessages() {
