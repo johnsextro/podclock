@@ -58,10 +58,12 @@ var clients = {};
  
 var socketsOfClients = {};
 var clock;
+var broadcastInterval;
+var hostInterval;
 io.sockets.on('connection', function(socket) {
   console.log("io socket connection");
   if (clock != undefined && clock.isClockStarted) {
-    setInterval(function() {
+    broadcastInterval = setInterval(function() {
       socket.broadcast.emit('timeUpdate', clock.getTime());
     }, 1000);
   }
@@ -71,7 +73,7 @@ io.sockets.on('connection', function(socket) {
       clock = new Podclock();
     }
     clock.start();
-    setInterval(function() {
+    hostInterval = setInterval(function() {
       socket.emit('timeUpdate', clock.getTime());
     }, 1000);
   });
@@ -86,6 +88,10 @@ io.sockets.on('connection', function(socket) {
 
   socket.on('resetClock', function () {
     clock.reset();
+    socket.emit('timeUpdate', clock.getTime());
+    socket.broadcast.emit('timeUpdate', clock.getTime());
+    clearInterval(broadcastInterval);
+    clearInterval(hostInterval);
   });
 
 });
