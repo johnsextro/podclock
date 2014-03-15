@@ -1,6 +1,6 @@
 function Podclock () {
 
-	this.startTime = -1;
+	this.startTime = 0;
 	this.pausedTime = 0;
 	this.currentlyPaused = false;
 	this.startPauseTime = -1;
@@ -39,7 +39,7 @@ function Podclock () {
 	};
 
 	this.reset = function() {
-		this.startTime = -1;
+		this.startTime = 0;
 		this.isStarted = false;
 		this.pausedTime = 0;
 		this.currentlyPaused = false;

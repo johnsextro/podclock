@@ -8,7 +8,7 @@ describe("runTheClock", function () {
 	clock.start();
 	waiter.sleep(5);
 	var elapsedTime = clock.getTime();
-	expect(elapsedTime).toBeGreaterThan(-1);
+	expect(elapsedTime).toBeGreaterThan(0);
   });
 
   it("check if the clock is started", function () {
@@ -18,19 +18,20 @@ describe("runTheClock", function () {
 	expect(clock.isClockStarted()).toBeTruthy();
   });
 
-  it("if the clock hasn't stated the time returned should be -1", function () {
+  it("if the clock hasn't stated the time returned should be 0", function () {
 	clock.reset();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(-1);
+	expect(clock.getTime()).toEqual(0);
+	expect(clock.isClockStarted()).toBeFalsy();
   });
 
-  it("resetting the clock should make time -1", function () {
+  it("resetting the clock should make time 0", function () {
 	clock.reset();
 	clock.start();
 	waiter.sleep(5);
 	clock.reset();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(-1);
+	expect(clock.getTime()).toEqual(0);
   });
 
   it("after starting the clock, time should always be increasing", function () {
@@ -87,7 +88,7 @@ describe("runTheClock", function () {
 	
 	clock.pause();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(-1);
+	expect(clock.getTime()).toEqual(0);
   });
 
   it("able to pause and resume the clock", function () {
@@ -106,7 +107,7 @@ describe("runTheClock", function () {
 	
 	clock.resume();
 	waiter.sleep(5)
-	expect(clock.getTime()).toEqual(-1);
+	expect(clock.getTime()).toEqual(0);
   });
 
   it("resuming without a pause has no effect", function () {

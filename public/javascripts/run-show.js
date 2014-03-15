@@ -13,6 +13,13 @@ function startClock() {
   $('#pause-link').show();
 }
 
+function resetClock() {
+  socket.emit('resetClock');
+  $('#start-link').show();
+  $('#pause-link').hide();
+  $('#resume-link').hide();
+}
+
 function pauseClock() {
   socket.emit('pauseClock');
   $('#pause-link').hide();
@@ -27,6 +34,7 @@ function resumeClock() {
 
 function wireLinksToActions() {
   $('#start-link').click(startClock);
+  $('#reset-link').click(resetClock);
   $('#pause-link').click(pauseClock).hide();
   $('#resume-link').click(resumeClock).hide();
 }

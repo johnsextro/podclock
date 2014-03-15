@@ -84,4 +84,8 @@ io.sockets.on('connection', function(socket) {
     clock.resume();
   });
 
+  socket.on('resetClock', function () {
+    clock.reset();
+  });
+
 });
