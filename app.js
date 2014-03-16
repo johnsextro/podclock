@@ -5,8 +5,8 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , socketio = require('socket.io')
-  , http = require('http');
+  , http = require('http')
+  , clockSocket = require('./controller/clock-socket.js');
 
 var app = module.exports = express.createServer();
 var Podclock = require('./controller/clock.js');
@@ -53,48 +53,4 @@ var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);
 });
 
-var io = socketio.listen(server);
-var clients = {};
- 
-var socketsOfClients = {};
-var clock;
-var broadcastInterval;
-var hostInterval;
-io.sockets.on('connection', function(socket) {
-  console.log("io socket connection");
-  if (clock != undefined && clock.isClockStarted()) {
-    broadcastInterval = setInterval(function() {
-      socket.broadcast.emit('timeUpdate', clock.getTime());
-    }, 1000);
-    socket.emit('hideAllButtons');
-  }
-
-  socket.on('startClock', function () {
-    if (clock == undefined) {
-      clock = new Podclock();
-    }
-    clock.start();
-    hostInterval = setInterval(function() {
-      socket.emit('timeUpdate', clock.getTime());
-      socket.broadcast.emit('timeUpdate', clock.getTime());
-    }, 1000);
-    socket.broadcast.emit('hideAllButtons');
-  });
-
-  socket.on('pauseClock', function () {
-    clock.pause();
-  });
-
-  socket.on('resumeClock', function () {
-    clock.resume();
-  });
-
-  socket.on('resetClock', function () {
-    clock.reset();
-    socket.emit('timeUpdate', clock.getTime());
-    socket.broadcast.emit('timeUpdate', clock.getTime());
-    clearInterval(broadcastInterval);
-    clearInterval(hostInterval);
-  });
-
-});
+clockSocket.registerSocketEvents(server);
