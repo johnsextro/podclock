@@ -12,9 +12,11 @@ exports.registerSocketEvents = function(server) {
   io.sockets.on('connection', function(socket) {
     console.log("io socket connection");
     if (clock != undefined && clock.isClockStarted()) {
-      broadcastInterval = setInterval(function() {
+      if (broadcastInterval != undefined){
+        broadcastInterval = setInterval(function() {
         socket.broadcast.emit('timeUpdate', clock.getTime());
       }, 1000);
+      }
       socket.emit('hideAllButtons');
     }
 
