@@ -39,6 +39,13 @@ function wireLinksToActions() {
   $('#resume-link').click(resumeClock).hide();
 }
 
+function hideAllButtons() {
+  $('#start-link').hide();
+  $('#reset-link').hide();
+  $('#pause-link').hide();
+  $('#resume-link').hide();
+}
+
 function createHandlersForSocketMessages() {
   socket.on('timeUpdate', function(millis) {
     x = millis / 1000
@@ -50,6 +57,8 @@ function createHandlersForSocketMessages() {
   x /= 24
     $('#podclock').text(hours + ":" + minutes + ":" + seconds);
   });
+
+  socket.on('hideAllButtons', hideAllButtons); 
 }
  
 $(function() {

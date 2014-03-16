@@ -62,10 +62,11 @@ var broadcastInterval;
 var hostInterval;
 io.sockets.on('connection', function(socket) {
   console.log("io socket connection");
-  if (clock != undefined && clock.isClockStarted) {
+  if (clock != undefined && clock.isClockStarted()) {
     broadcastInterval = setInterval(function() {
       socket.broadcast.emit('timeUpdate', clock.getTime());
     }, 1000);
+    socket.emit('hideAllButtons');
   }
 
   socket.on('startClock', function () {
@@ -75,7 +76,9 @@ io.sockets.on('connection', function(socket) {
     clock.start();
     hostInterval = setInterval(function() {
       socket.emit('timeUpdate', clock.getTime());
+      socket.broadcast.emit('timeUpdate', clock.getTime());
     }, 1000);
+    socket.broadcast.emit('hideAllButtons');
   });
 
   socket.on('pauseClock', function () {
