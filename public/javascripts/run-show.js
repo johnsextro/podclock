@@ -32,11 +32,16 @@ function resumeClock() {
   $('#pause-link').show();
 }
 
+function addTitleSuggestion() {
+  $('#show-titles').append('<li>' + $('#title-suggestion').val() + '</li>');
+}
+
 function wireLinksToActions() {
   $('#start-link').click(startClock);
   $('#reset-link').click(resetClock);
   $('#pause-link').click(pauseClock).hide();
   $('#resume-link').click(resumeClock).hide();
+  $('#suggest-title').click(addTitleSuggestion);
 }
 
 function hideAllButtons() {
