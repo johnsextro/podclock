@@ -53,6 +53,7 @@ exports.registerSocketEvents = function(server) {
       socket.broadcast.emit('timeUpdate', clock.getTime());
       clearInterval(broadcastInterval);
       clearInterval(hostInterval);
+      suggestedTitles = [];
     });
 
     socket.on('titleSuggested', function(suggestion) {
