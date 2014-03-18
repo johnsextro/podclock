@@ -2,6 +2,7 @@ var socketio = require('socket.io');
 var Podclock = require('./clock.js');
 
 var clients = {};
+var suggestedTitles = [];
 var socketsOfClients = {};
 var clock;
 var broadcastInterval;
@@ -18,6 +19,12 @@ exports.registerSocketEvents = function(server) {
       }, 1000);
       }
       socket.emit('hideAllButtons');
+    }
+
+    if (suggestedTitles.length > 0){
+      for (var i = 0; i < suggestedTitles.length; i++) {
+        socket.emit('addTitleSuggestion', suggestedTitles[i]);
+      };
     }
 
     socket.on('startClock', function () {
@@ -46,6 +53,11 @@ exports.registerSocketEvents = function(server) {
       socket.broadcast.emit('timeUpdate', clock.getTime());
       clearInterval(broadcastInterval);
       clearInterval(hostInterval);
+    });
+
+    socket.on('titleSuggested', function(suggestion) {
+      socket.broadcast.emit('addTitleSuggestion', suggestion);
+      suggestedTitles.push(suggestion);
     });
   });
 }

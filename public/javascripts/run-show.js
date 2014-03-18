@@ -32,8 +32,14 @@ function resumeClock() {
   $('#pause-link').show();
 }
 
-function addTitleSuggestion() {
-  $('#show-titles').append('<li>' + $('#title-suggestion').val() + '</li>');
+function submitTitleSuggestion() {
+  socket.emit('titleSuggested', $('#title-suggestion').val());
+  addTitleSuggestion($('#title-suggestion').val());
+  $('#title-suggestion').val('');
+}
+
+function addTitleSuggestion(suggestion) {
+  $('#show-titles').append('<li>' + suggestion + '</li>');
 }
 
 function wireLinksToActions() {
@@ -41,7 +47,12 @@ function wireLinksToActions() {
   $('#reset-link').click(resetClock);
   $('#pause-link').click(pauseClock).hide();
   $('#resume-link').click(resumeClock).hide();
-  $('#suggest-title').click(addTitleSuggestion);
+  $('#suggest-title').click(submitTitleSuggestion);
+  $('#title-suggestion').keypress(function(event) {
+    if (event.which == 13) {
+      submitTitleSuggestion();
+    }
+  });
 }
 
 function hideAllButtons() {
@@ -63,7 +74,11 @@ function createHandlersForSocketMessages() {
     $('#podclock').text(hours + ":" + minutes + ":" + seconds);
   });
 
-  socket.on('hideAllButtons', hideAllButtons); 
+  socket.on('hideAllButtons', hideAllButtons);
+
+  socket.on('addTitleSuggestion', function(data){
+    addTitleSuggestion(data);
+  });
 }
  
 $(function() {
