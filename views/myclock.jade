@@ -9,17 +9,24 @@
 .container
   .hero-unit
     h2 This Agile Life Podcast Clock
-    p 
-    h2: a#reset-link(href="#") Reset
-    h1: span#podclock 00:00:00 
-    h2: a#start-link(href="#") Start
-      h2: a#pause-link(href="#") Pause
-        h2: a#resume-link(href="#") Resume
+    h1
+      button.btn-large.btn-danger#reset-link Reset
+      span#podclock 00:00:00     
+      button.btn-large.btn-primary#start-link Start
+      button.btn-large.btn-primary#pause-link Pause
+      button.btn-large.btn-primary#resume-link Resume
 
 .container
-  .hero-unit
-    p: input#title-suggestion
-    h3: button#suggest-title Suggest Title
+  .hero-unit.pull-left
+    p: input.input-block-level#title-suggestion
+    h3: button.btn-primary#suggest-title Suggest Title
     h2 Possible Show Titles
       
     h3: ol#show-titles
+  .hero-unit.pull-right
+    h2 Show Time Codes
+    div.btn-group
+      button.btn.btn-default Um / Uh / And
+      button.btn.btn-default Silence
+      button.btn.btn-default Talk over
+    h3: ul#time-codes    
