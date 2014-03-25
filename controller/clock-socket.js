@@ -15,10 +15,9 @@ exports.registerSocketEvents = function(server) {
     if (clock != undefined && clock.isClockStarted()) {
       if (broadcastInterval != undefined){
         broadcastInterval = setInterval(function() {
-        socket.broadcast.emit('timeUpdate', clock.getTime());
-      }, 1000);
+          socket.broadcast.emit('timeUpdate', clock.getTime());
+        }, 1000);
       }
-      socket.emit('hideAllButtons');
     }
 
     if (suggestedTitles.length > 0){
@@ -36,7 +35,6 @@ exports.registerSocketEvents = function(server) {
         socket.emit('timeUpdate', clock.getTime());
         socket.broadcast.emit('timeUpdate', clock.getTime());
       }, 1000);
-      socket.broadcast.emit('hideAllButtons');
     });
 
     socket.on('pauseClock', function () {
@@ -48,11 +46,13 @@ exports.registerSocketEvents = function(server) {
     });
 
     socket.on('resetClock', function () {
-      clock.reset();
-      socket.emit('timeUpdate', clock.getTime());
-      socket.broadcast.emit('timeUpdate', clock.getTime());
-      clearInterval(broadcastInterval);
-      clearInterval(hostInterval);
+      if (clock != undefined && clock.isClockStarted()) {
+        clock.reset();
+        socket.emit('timeUpdate', clock.getTime());
+        socket.broadcast.emit('timeUpdate', clock.getTime());
+        clearInterval(broadcastInterval);
+        clearInterval(hostInterval);
+      }
       suggestedTitles = [];
       socket.broadcast.emit('resetAllShowData');
     });

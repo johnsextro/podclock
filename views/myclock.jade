@@ -10,11 +10,10 @@
   .hero-unit
     h2 This Agile Life Podcast Clock
     h1
-      button.btn-large.btn-danger#reset-link Reset
-      span#podclock 00:00:00     
-      button.btn-large.btn-primary#start-link Start
-      button.btn-large.btn-primary#pause-link Pause
-      button.btn-large.btn-primary#resume-link Resume
+      button.btn-large.btn-primary#start-link 
+        span#clock-label Click to Start/Pause/Resume
+        h1: span#podclock 00:00:00
+      button.btn-large.btn-danger.pull-right#reset-link Reset
 
 .container
   .hero-unit.pull-left
@@ -24,7 +23,7 @@
       
     h3: ol#show-titles
   .hero-unit.pull-right
-    h2 Show Time Codes
+    h2 Events & Time Codes
     div.btn-group
       button.btn.btn-default Um / Uh / And
       button.btn.btn-default Silence

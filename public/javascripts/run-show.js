@@ -9,28 +9,22 @@ function pad(num, size) {
 
 function startClock() {
   socket.emit('startClock');
-  $('#start-link').hide();
-  $('#pause-link').show();
+  $('#start-link').click(pauseClock);
 }
 
 function resetClock() {
   socket.emit('resetClock');
-  $('#start-link').show();
-  $('#pause-link').hide();
-  $('#resume-link').hide();
   resetAllShowData();
 }
 
 function pauseClock() {
   socket.emit('pauseClock');
-  $('#pause-link').hide();
-  $('#resume-link').show();
+  $('#start-link').click(resumeClock);
 }
 
 function resumeClock() {
   socket.emit('resumeClock');
-  $('#resume-link').hide();
-  $('#pause-link').show();
+  $('#start-link').click(pauseClock);
 }
 
 function resetAllShowData() {
@@ -39,32 +33,23 @@ function resetAllShowData() {
 
 function submitTitleSuggestion() {
   socket.emit('titleSuggested', $('#title-suggestion').val());
-  addTitleSuggestion($('#title-suggestion').val());
+  updateTitleSuggestion($('#title-suggestion').val());
   $('#title-suggestion').val('');
 }
 
-function addTitleSuggestion(suggestion) {
+function updateTitleSuggestion(suggestion) {
   $('#show-titles').append('<li>' + suggestion + '</li>');
 }
 
 function wireLinksToActions() {
   $('#start-link').click(startClock);
   $('#reset-link').click(resetClock);
-  $('#pause-link').click(pauseClock).hide();
-  $('#resume-link').click(resumeClock).hide();
   $('#suggest-title').click(submitTitleSuggestion);
   $('#title-suggestion').keypress(function(event) {
     if (event.which == 13) {
       submitTitleSuggestion();
     }
   });
-}
-
-function hideAllButtons() {
-  $('#start-link').hide();
-  $('#reset-link').hide();
-  $('#pause-link').hide();
-  $('#resume-link').hide();
 }
 
 function createHandlersForSocketMessages() {
@@ -78,8 +63,6 @@ function createHandlersForSocketMessages() {
   x /= 24
     $('#podclock').text(hours + ":" + minutes + ":" + seconds);
   });
-
-  socket.on('hideAllButtons', hideAllButtons);
 
   socket.on('addTitleSuggestion', function(data){
     addTitleSuggestion(data);
