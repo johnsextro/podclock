@@ -18,6 +18,7 @@ function resetClock() {
   $('#start-link').show();
   $('#pause-link').hide();
   $('#resume-link').hide();
+  resetAllShowData();
 }
 
 function pauseClock() {
@@ -30,6 +31,10 @@ function resumeClock() {
   socket.emit('resumeClock');
   $('#resume-link').hide();
   $('#pause-link').show();
+}
+
+function resetAllShowData() {
+  $('ol#show-titles').empty();
 }
 
 function submitTitleSuggestion() {
@@ -79,6 +84,8 @@ function createHandlersForSocketMessages() {
   socket.on('addTitleSuggestion', function(data){
     addTitleSuggestion(data);
   });
+
+  socket.on('resetAllShowData', resetAllShowData);
 }
  
 $(function() {
