@@ -17,8 +17,9 @@
 
 .container
   .hero-unit.pull-left
-    p: input.input-block-level#title-suggestion
-    h3: button.btn-primary#suggest-title Suggest Title
+    span.input-group.input-group-lg
+      input.form-control#title-suggestion
+    button.btn.btn-primary#suggest-title Suggest Title
     h2 Possible Show Titles
       
     h3: ol#show-titles
@@ -28,4 +29,4 @@
       button.btn.btn-default Um / Uh / And
       button.btn.btn-default Silence
       button.btn.btn-default Talk over
-    h3: ul#time-codes    
+    h3: ul.unstyled#time-codes    
