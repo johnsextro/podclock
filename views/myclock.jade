@@ -17,17 +17,19 @@
     button.btn-lg.btn-danger.pull-right#reset-link Reset
 
 .row-fluid
-  .jumbotron.col-xs-6
-    span.input-group
-      input.form-control#title-suggestion
-      button.btn.btn-primary#suggest-title Suggest Title
+  .jumbotron.col-md-5
+    div.input-group
+      input.form-control#title-suggestion(type='text', placeholder='Suggestion')
+      span.input-group-btn
+        button.btn.btn-default#suggest-title Suggest Title
     h3 Possible Show Titles
     ol#show-titles
   
-  .jumbotron.col-xs-6
-    span.input-group
-      input.form-control#event-name
-      button.btn.btn-primary Create Event Button
+  .jumbotron.col-md-5.col-md-offset-2
+    div.input-group
+      input.form-control#event-name(type='text', placeholder='Event Button Text')
+      span.input-group-btn
+        button.btn.btn-default Create Event Button
     h3 Events & Time Codes
     div.btn-group.btn-group-vertical.pull-left
       button.btn.btn-default.event_time_code_btn Um / Uh / And
