@@ -6,7 +6,7 @@
         ul.nav
           li.active
             a(href="/") Home
-.container
+.container-fluid
   .hero-unit
     h2 This Agile Life Podcast Clock
     h1
@@ -15,18 +15,22 @@
         h1: span#podclock 00:00:00
       button.btn-large.btn-danger.pull-right#reset-link Reset
 
-.container
-  .hero-unit.pull-left
-    span.input-group.input-group-lg
+.row-fluid
+  .hero-unit.span6
+    span.input-group
       input.form-control#title-suggestion
     button.btn.btn-primary#suggest-title Suggest Title
-    h2 Possible Show Titles
-      
-    h3: ol#show-titles
-  .hero-unit.pull-right
-    div.btn-group
+    h3 Possible Show Titles
+    ol#show-titles
+  
+  .hero-unit.span6
+    div
+      input.input-large
+      button.btn.btn-primary Create Event Button
+    h3 Events & Time Codes
+    div.btn-group.btn-group-vertical.pull-left
       button.btn.btn-default.event_time_code_btn Um / Uh / And
       button.btn.btn-default.event_time_code_btn Silence
       button.btn.btn-default.event_time_code_btn Talk over
-    h2 Events & Time Codes
-    h3: ul.unstyled#time-codes    
+    div.pull-right
+      ul.unstyled#time-codes    

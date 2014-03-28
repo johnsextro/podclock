@@ -4,6 +4,7 @@ var Podclock = require('./clock.js');
 var clients = {};
 var suggestedTitles = [];
 var showEventTimeCodes = [];
+var showEventButtons = [];
 var socketsOfClients = {};
 var clock;
 var broadcastInterval;
@@ -73,6 +74,11 @@ exports.registerSocketEvents = function(server) {
       showEventTimeCodes.push(message);
       socket.emit('addEventTimeCode', message);
       socket.broadcast.emit('addEventTimeCode', message);
+    });
+
+    socket.on('addShowEventButton', function(buttonName){
+      showEventButtons.push(buttonName);
+      socket.broadcast.emit('addShowEventButton', buttonName);
     });
   });
 }
