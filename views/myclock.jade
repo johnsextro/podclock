@@ -1,31 +1,32 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      a.brand(href="#")= title
-      .nav-expand
-        ul.nav
-          li.active
-            a(href="/") Home
+.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle
+      a.navbar-brand(href="#")= title
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active: a(href="/") Home
+      
+
 .container-fluid
-  .hero-unit
+  .jumbotron
     h2 This Agile Life Podcast Clock
-    h1
-      button.btn-large.btn-primary#start-link 
-        span#clock-label Click to Start/Pause/Resume
-        h1: span#podclock 00:00:00
-      button.btn-large.btn-danger.pull-right#reset-link Reset
+    button.btn-lg.btn-primary#start-link 
+      span#clock-label Click to Start/Pause/Resume
+      h1: span#podclock 00:00:00
+    button.btn-lg.btn-danger.pull-right#reset-link Reset
 
 .row-fluid
-  .hero-unit.span6
+  .jumbotron.col-xs-6
     span.input-group
       input.form-control#title-suggestion
-    button.btn.btn-primary#suggest-title Suggest Title
+      button.btn.btn-primary#suggest-title Suggest Title
     h3 Possible Show Titles
     ol#show-titles
   
-  .hero-unit.span6
-    div
-      input.input-large
+  .jumbotron.col-xs-6
+    span.input-group
+      input.form-control#event-name
       button.btn.btn-primary Create Event Button
     h3 Events & Time Codes
     div.btn-group.btn-group-vertical.pull-left
@@ -33,4 +34,4 @@
       button.btn.btn-default.event_time_code_btn Silence
       button.btn.btn-default.event_time_code_btn Talk over
     div.pull-right
-      ul.unstyled#time-codes    
+      ul.list-group#time-codes    
