@@ -1,16 +1,14 @@
-
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      a.brand(href="#")= title
-      .nav-expand
-        ul.nav
-          li.active
-            a(href="#") Home
-          li
-            a(href="/myclock") This Agile Life
-.container
-  .hero-unit
+.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle
+      a.navbar-brand(href="#")= title
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active: a(href="/") Home
+        li: a(href="/myclock") This Agile Life
+.container-fluid
+  .jumbotron
     h1 Hello, World!
     p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
     p
