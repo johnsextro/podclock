@@ -35,7 +35,7 @@ exports.registerSocketEvents = function(server) {
     }
 
     socket.on('clockClick', function () {
-      if (clock == undefined) {
+      if (clock == undefined || !clock.isClockStarted()) {
         clock = new Podclock();
         clock.start();
         hostInterval = setInterval(function() {
