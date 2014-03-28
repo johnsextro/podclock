@@ -7,24 +7,13 @@ function pad(num, size) {
     return s.substr(s.length-size);
 }
 
-function startClock() {
-  socket.emit('startClock');
-  $('#start-link').click(pauseClock);
+function clockClick() {
+  socket.emit('clockClick');
 }
 
 function resetClock() {
   socket.emit('resetClock');
   resetAllShowData();
-}
-
-function pauseClock() {
-  socket.emit('pauseClock');
-  $('#start-link').click(resumeClock);
-}
-
-function resumeClock() {
-  socket.emit('resumeClock');
-  $('#start-link').click(pauseClock);
 }
 
 function resetAllShowData() {
@@ -42,7 +31,7 @@ function updateTitleSuggestion(suggestion) {
 }
 
 function wireLinksToActions() {
-  $('#start-link').click(startClock);
+  $('#start-link').click(clockClick);
   $('#reset-link').click(resetClock);
   $('#suggest-title').click(submitTitleSuggestion);
   $('#title-suggestion').keypress(function(event) {

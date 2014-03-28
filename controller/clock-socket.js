@@ -26,23 +26,21 @@ exports.registerSocketEvents = function(server) {
       };
     }
 
-    socket.on('startClock', function () {
+    socket.on('clockClick', function () {
       if (clock == undefined) {
         clock = new Podclock();
+        clock.start();
+        hostInterval = setInterval(function() {
+          socket.emit('timeUpdate', clock.getTime());
+          socket.broadcast.emit('timeUpdate', clock.getTime());
+        }, 1000);
+      } else if (clock.isClockPaused()) {
+        clock.resume();
+      } else if (clock.isClockStarted() && !clock.isClockPaused()) {
+        clock.pause();
+      } else {
+        console.log("Something went wrong");
       }
-      clock.start();
-      hostInterval = setInterval(function() {
-        socket.emit('timeUpdate', clock.getTime());
-        socket.broadcast.emit('timeUpdate', clock.getTime());
-      }, 1000);
-    });
-
-    socket.on('pauseClock', function () {
-      clock.pause();
-    });
-
-    socket.on('resumeClock', function () {
-      clock.resume();
     });
 
     socket.on('resetClock', function () {

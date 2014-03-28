@@ -50,6 +50,10 @@ function Podclock () {
 		return this.isStarted;
 	};
 
+	this.isClockPaused = function() {
+		return this.currentlyPaused;
+	}
+
 }
 
 module.exports = Podclock;
