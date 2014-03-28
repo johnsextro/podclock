@@ -3,6 +3,7 @@ var Podclock = require('./clock.js');
 
 var clients = {};
 var suggestedTitles = [];
+var showEventTimeCodes = [];
 var socketsOfClients = {};
 var clock;
 var broadcastInterval;
@@ -23,6 +24,12 @@ exports.registerSocketEvents = function(server) {
     if (suggestedTitles.length > 0){
       for (var i = 0; i < suggestedTitles.length; i++) {
         socket.emit('addTitleSuggestion', suggestedTitles[i]);
+      };
+    }
+
+    if (showEventTimeCodes.length > 0){
+      for (var i = 0; i < showEventTimeCodes.length; i++) {
+        socket.emit('addEventTimeCode', showEventTimeCodes[i]);
       };
     }
 
@@ -52,12 +59,20 @@ exports.registerSocketEvents = function(server) {
         clearInterval(hostInterval);
       }
       suggestedTitles = [];
+      showEventTimeCodes = [];
       socket.broadcast.emit('resetAllShowData');
     });
 
     socket.on('titleSuggested', function(suggestion) {
       socket.broadcast.emit('addTitleSuggestion', suggestion);
       suggestedTitles.push(suggestion);
+    });
+
+    socket.on('showEventTimeCode', function(showEvent) {
+      var message = showEvent + " @ " + clock.getTime();
+      showEventTimeCodes.push(message);
+      socket.emit('addEventTimeCode', message);
+      socket.broadcast.emit('addEventTimeCode', message);
     });
   });
 }

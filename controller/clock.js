@@ -14,6 +14,18 @@ function Podclock () {
 	};
 
 	this.getTime = function() {
+    	var millis = this.getMillis();
+    	x = millis / 1000
+	  	var seconds = pad(Math.floor(x % 60),2);
+	  	x /= 60
+	  	var minutes = pad(Math.floor(x % 60),2);
+	  	x /= 60
+	  	var hours = pad(Math.floor(x % 24),2);
+	  	x /= 24
+	    return hours + ":" + minutes + ":" + seconds;
+	};
+
+	this.getMillis = function() {
 		if(!this.isClockStarted()) {
 			return this.startTime;
 		} else if (this.currentlyPaused) {
@@ -52,6 +64,11 @@ function Podclock () {
 
 	this.isClockPaused = function() {
 		return this.currentlyPaused;
+	}
+
+	function pad(num, size) {
+    	var s = "000000000" + num;
+    	return s.substr(s.length-size);
 	}
 
 }

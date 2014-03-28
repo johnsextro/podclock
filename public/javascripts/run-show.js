@@ -2,11 +2,6 @@ var socket;
  
 socket = io.connect("http://localhost:3000");
 
-function pad(num, size) {
-    var s = "000000000" + num;
-    return s.substr(s.length-size);
-}
-
 function clockClick() {
   socket.emit('clockClick');
 }
@@ -18,6 +13,7 @@ function resetClock() {
 
 function resetAllShowData() {
   $('ol#show-titles').empty();
+  $('ol#time-codes').empty();
 }
 
 function submitTitleSuggestion() {
@@ -30,6 +26,11 @@ function updateTitleSuggestion(suggestion) {
   $('#show-titles').append('<li>' + suggestion + '</li>');
 }
 
+
+function updateEventTimeCode(message) {
+  $('#time-codes').prepend('<li>' + message + '</li>');
+}
+
 function wireLinksToActions() {
   $('#start-link').click(clockClick);
   $('#reset-link').click(resetClock);
@@ -39,25 +40,25 @@ function wireLinksToActions() {
       submitTitleSuggestion();
     }
   });
+  $('.event_time_code_btn').click( function(event) {
+    socket.emit('showEventTimeCode', $(event.target).text());
+  });
 }
 
 function createHandlersForSocketMessages() {
-  socket.on('timeUpdate', function(millis) {
-    x = millis / 1000
-  var seconds = pad(Math.floor(x % 60),2);
-  x /= 60
-  var minutes = pad(Math.floor(x % 60),2);
-  x /= 60
-  var hours = pad(Math.floor(x % 24),2);
-  x /= 24
-    $('#podclock').text(hours + ":" + minutes + ":" + seconds);
+  socket.on('timeUpdate', function(formattedTime) {
+    $('#podclock').text(formattedTime);
   });
 
   socket.on('addTitleSuggestion', function(data){
-    addTitleSuggestion(data);
+    updateTitleSuggestion(data);
   });
 
   socket.on('resetAllShowData', resetAllShowData);
+
+  socket.on('addEventTimeCode', function(message) {
+    updateEventTimeCode(message);
+  });
 }
  
 $(function() {
