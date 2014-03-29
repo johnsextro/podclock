@@ -10,7 +10,7 @@
 
 .container-fluid
   .jumbotron
-    h2 This Agile Life Podcast Clock
+    h2 This Agile Life
     button.btn-lg.btn-primary#start-link 
       span#clock-label Click to Start/Pause/Resume
       h1: span#podclock 00:00:00
@@ -29,9 +29,9 @@
     div.input-group
       input.form-control#event-name(type='text', placeholder='Event Button Text')
       span.input-group-btn
-        button.btn.btn-default Create Event Button
+        button.btn.btn-default#create-event Create Event Button
     h3 Events & Time Codes
-    div.btn-group.btn-group-vertical.pull-left
+    div.btn-group.btn-group-vertical.pull-left#event-buttons
       button.btn.btn-default.event_time_code_btn Um / Uh / And
       button.btn.btn-default.event_time_code_btn Silence
       button.btn.btn-default.event_time_code_btn Talk over

@@ -22,10 +22,19 @@ function submitTitleSuggestion() {
   $('#title-suggestion').val('');
 }
 
+function addEventButton() {
+  socket.emit('addShowEventButton', $('#event-name').val());
+  createEventButton($('#event-name').val());
+  $('#event-name').val('');
+}
+
 function updateTitleSuggestion(suggestion) {
   $('#show-titles').append('<li>' + suggestion + '</li>');
 }
 
+function createEventButton(buttonText) {
+  $('#event-buttons').append('<button class="btn btn-default event_time_code_btn">' + buttonText + '</button>');
+}
 
 function updateEventTimeCode(message) {
   $('#time-codes').prepend('<li>' + message + '</li>');
@@ -40,7 +49,13 @@ function wireLinksToActions() {
       submitTitleSuggestion();
     }
   });
-  $('.event_time_code_btn').click( function(event) {
+  $('#create-event').click(addEventButton);
+  $('#event-name').keypress(function(event) {
+    if (event.which == 13) {
+      addEventButton();
+    }
+  });
+  $('#event-buttons').delegate('button.event_time_code_btn', 'click', function(event) {
     socket.emit('showEventTimeCode', $(event.target).text());
   });
 }
