@@ -9,32 +9,35 @@
       
 
 .container-fluid
-  .jumbotron
+  .row-fluid
     .row
       .panel.panel-default.col-md-3
         .panel-body
           button.btn-lg.btn-primary#start-link 
             span#clock-label Start/Pause/Resume
             h2#podclock 00:00:00
-      .panel.panel-default.col-md-7
+      .panel.panel-default.col-md-2
+        .panel-body
+          button.btn-lg.btn-danger.pull-right#reset-link Reset
+    .row
+      .panel.panel-default.col-md-6
         .panel-body
           .row
-            h4.pull-left Current Segment
-            h4.pull-right Next Segment 
-          .row
-            h4.pull-left Title 
+            h4 Current Segment - Title 
               small (00:30:00 to 00:40:00)
-            h4.pull-right Title 
-              small (00:40:00 to 00:60:00)
           .row
             div.input-group
               input.form-control#show-note(type='text', placeholder='Discussion Note')
               span.input-group-btn
-                button.btn.btn-default#suggest-title Suggest Title
+                button.btn.btn-default#suggest-title Add Note
             textarea.form-control(rows='5')
-      .panel.panel-default.col-md-2
+      .panel.panel-default.col-md-6
         .panel-body
-          button.btn-lg.btn-danger.pull-right#reset-link Reset
+          .row
+            h4 Next Segment - Title 
+              small (00:40:00 to 00:60:00)
+          .row
+            textarea.form-control(rows='5')
 
   .row-fluid
     .panel.panel-default.col-md-4
