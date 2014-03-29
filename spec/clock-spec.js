@@ -7,7 +7,7 @@ describe("runTheClock", function () {
 	clock.reset();
 	clock.start();
 	waiter.sleep(5);
-	var elapsedTime = clock.getTime();
+	var elapsedTime = clock.getMillis();
 	expect(elapsedTime).toBeGreaterThan(0);
   });
 
@@ -21,7 +21,7 @@ describe("runTheClock", function () {
   it("if the clock hasn't stated the time returned should be 0", function () {
 	clock.reset();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(0);
+	expect(clock.getMillis()).toEqual(0);
 	expect(clock.isClockStarted()).toBeFalsy();
   });
 
@@ -31,16 +31,16 @@ describe("runTheClock", function () {
 	waiter.sleep(5);
 	clock.reset();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(0);
+	expect(clock.getMillis()).toEqual(0);
   });
 
   it("after starting the clock, time should always be increasing", function () {
     clock.start();
 	waiter.sleep(5);
-	var elapsedTime = clock.getTime();
+	var elapsedTime = clock.getMillis();
 	expect(elapsedTime).toBeGreaterThan(0);
 	waiter.sleep(5);
-	nextElapsedTime = clock.getTime();
+	nextElapsedTime = clock.getMillis();
 	expect(nextElapsedTime).toBeGreaterThan(elapsedTime);
   });
 
@@ -48,11 +48,11 @@ describe("runTheClock", function () {
 	clock.reset();
     clock.start();
 	waiter.sleep(5);
-	var elapsedTime = clock.getTime();
+	var elapsedTime = clock.getMillis();
 	expect(elapsedTime).toBeGreaterThan(0);
 	clock.start();
 	waiter.sleep(5);
-	nextElapsedTime = clock.getTime();
+	nextElapsedTime = clock.getMillis();
 	expect(nextElapsedTime).toBeGreaterThan(9);
 	expect(nextElapsedTime).toBeGreaterThan(elapsedTime);
   });
@@ -64,7 +64,7 @@ describe("runTheClock", function () {
 	waiter.sleep(5)
 	clock.pause();
 	waiter.sleep(5);
-	expect(clock.getTime()).toBeLessThan(10);
+	expect(clock.getMillis()).toBeLessThan(10);
   });
 
   it("trying to pause the clock once paused has no effect", function () {
@@ -74,13 +74,13 @@ describe("runTheClock", function () {
 	waiter.sleep(5)
 	clock.pause();
 	waiter.sleep(5);
-	expect(clock.getTime()).toBeLessThan(10);
+	expect(clock.getMillis()).toBeLessThan(10);
 	clock.pause();
 	waiter.sleep(5);
-	expect(clock.getTime()).toBeLessThan(10);
+	expect(clock.getMillis()).toBeLessThan(10);
 	clock.resume();
 	waiter.sleep(5);
-	expect(clock.getTime()).toBeGreaterThan(9);
+	expect(clock.getMillis()).toBeGreaterThan(9);
   });
 
   it("pausing before starting the clock has no effect", function () {
@@ -88,7 +88,7 @@ describe("runTheClock", function () {
 	
 	clock.pause();
 	waiter.sleep(5);
-	expect(clock.getTime()).toEqual(0);
+	expect(clock.getMillis()).toEqual(0);
   });
 
   it("able to pause and resume the clock", function () {
@@ -99,7 +99,7 @@ describe("runTheClock", function () {
 	clock.pause();
 	waiter.sleep(5);
 	clock.resume();
-	expect(clock.getTime()).toBeLessThan(10);
+	expect(clock.getMillis()).toBeLessThan(10);
   });
 
   it("resuming before starting the clock has no effect", function () {
@@ -107,7 +107,7 @@ describe("runTheClock", function () {
 	
 	clock.resume();
 	waiter.sleep(5)
-	expect(clock.getTime()).toEqual(0);
+	expect(clock.getMillis()).toEqual(0);
   });
 
   it("resuming without a pause has no effect", function () {
@@ -117,7 +117,7 @@ describe("runTheClock", function () {
 	waiter.sleep(5)
 	clock.resume();
 	waiter.sleep(5)
-	expect(clock.getTime()).toBeGreaterThan(9);
+	expect(clock.getMillis()).toBeGreaterThan(9);
   });
 
   it("able to pause/resume more than once", function () {
@@ -132,7 +132,7 @@ describe("runTheClock", function () {
 	clock.pause();
 	waiter.sleep(5);
 	clock.resume();
-	expect(clock.getTime()).toBeLessThan(12);
+	expect(clock.getMillis()).toBeLessThan(12);
   });
 
   it("clock is a prototype that can be constructed more than once", function () {
@@ -143,7 +143,7 @@ describe("runTheClock", function () {
 	var secondClock = new Podclock();
 	secondClock.start();
 	waiter.sleep(5)
-	expect(clock.getTime()).toBeGreaterThan(secondClock.getTime());
+	expect(clock.getMillis()).toBeGreaterThan(secondClock.getMillis());
   });
 
 });    
