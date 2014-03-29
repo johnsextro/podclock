@@ -34,6 +34,12 @@ exports.registerSocketEvents = function(server) {
       };
     }
 
+    if (showEventButtons.length > 0){
+      for (var i = 0; i < showEventButtons.length; i++) {
+        socket.emit('addShowEventButton', showEventButtons[i]);
+      };
+    }
+
     socket.on('clockClick', function () {
       if (clock == undefined || !clock.isClockStarted()) {
         clock = new Podclock();

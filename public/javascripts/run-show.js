@@ -74,6 +74,10 @@ function createHandlersForSocketMessages() {
   socket.on('addEventTimeCode', function(message) {
     updateEventTimeCode(message);
   });
+
+  socket.on('addShowEventButton', function(buttonText) {
+    createEventButton(buttonText);
+  });
 }
  
 $(function() {
