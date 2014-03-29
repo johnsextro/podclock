@@ -13,7 +13,7 @@ function resetClock() {
 
 function resetAllShowData() {
   $('ol#show-titles').empty();
-  $('ol#time-codes').empty();
+  $('ul#time-codes').empty();
 }
 
 function submitTitleSuggestion() {
