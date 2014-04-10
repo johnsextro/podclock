@@ -9,7 +9,6 @@ var express = require('express')
   , clockSocket = require('./controller/clock-socket.js');
 
 var app = module.exports = express.createServer();
-var Podclock = require('./controller/clock.js');
 
 // Configuration
 
@@ -48,6 +47,10 @@ app.get('/', routes.index);
 app.get('/myclock', function(req, res){
   res.render('myclock', { title: 'Podclock' })
 });
+app.get('/podcast/:id', function (req, res) {
+  var podcast = req.param('id');
+  res.render('myclock', { title: podcast});
+})
 
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);
