@@ -1,2 +1,2 @@
 #!/bin/bash
-jasmine-node spec --autotest --color --watch
+jasmine-node spec --autotest --color --watch --verbose
