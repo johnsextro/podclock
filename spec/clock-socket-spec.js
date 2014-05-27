@@ -76,6 +76,14 @@ describe("test the clock socket events", function () {
 		socket.emit('clockClick');
 	});
 
+	it("ensure reset message sent to co-hosts", function(done) {
+		cohost.on('resetAllShowData', function() {
+			expect(true).toBeTruthy();
+			done();
+		});
+		socket.emit('resetClock');
+	});
+
 	it("testing communication of title suggestions", function (done) {
 		cohost.on('addTitleSuggestion', function(data) {
 			expect(data).toMatch('test title suggestion');
