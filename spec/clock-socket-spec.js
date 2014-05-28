@@ -84,7 +84,7 @@ describe("test the clock socket events", function () {
 		socket.emit('resetClock');
 	});
 
-	it("testing communication of title suggestions", function (done) {
+	it("ensure title suggestions sent to co-hosts", function (done) {
 		cohost.on('addTitleSuggestion', function(data) {
 			expect(data).toMatch('test title suggestion');
 			done();	
@@ -92,7 +92,7 @@ describe("test the clock socket events", function () {
 		socket.emit('titleSuggested', 'test title suggestion');
 	});
 
-	it("testing notification to add an event button", function (done) {
+	it("ensure new buttons are communicated to co-hosts", function (done) {
 		cohost.on('addShowEventButton', function(data) {
 			expect(data).toMatch('test button name');
 			done();	
