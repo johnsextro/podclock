@@ -100,4 +100,18 @@ describe("test the clock socket events", function () {
 		socket.emit('addShowEventButton', 'test button name');
 	});
 
+	it("ensure event time codes are communicated back to host and to co-hosts", function (done) {
+		cohost.on('addEventTimeCode', function(data) {
+			expect(data).toContain('test time code @');
+			done();	
+		});
+		socket.on('addEventTimeCode', function(data) {
+			expect(data).toContain('test time code @');
+			done();	
+		});
+		socket.emit('clockClick');
+		waiter.sleep(1);
+		socket.emit('showEventTimeCode', 'test time code');
+	});
+
 });    
