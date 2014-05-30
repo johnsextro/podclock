@@ -123,25 +123,25 @@ describe("test the clock socket events", function () {
 		host.emit('showEventTimeCode', 'test time code');
 	});
 
-	it("only the host can start the clock", function (done) {
-		cohost.on('notHost', function(message) {
-			expect(true).toBeTruthy();
-			done();
-		});
-		cohost.emit('clockClick');
-	});
+	// it("only the host can start the clock", function (done) {
+	// 	cohost.on('notHost', function(message) {
+	// 		expect(true).toBeTruthy();
+	// 		done();
+	// 	});
+	// 	cohost.emit('clockClick');
+	// });
 
-	it("only the host can reset the clock", function (done) {
-		cohost.on('notHost', function(message) {
-			expect(true).toBeTruthy();
-			done();
-		});
-		cohost.on('timeUpdate', function(runningTime) {
-			expect(runningTime).toNotMatch("00:00:00");
-			done();
-		});
-		host.emit('clockClick');
-		waiter.sleep(1);
-		cohost.emit('resetClock');
-	});
+	// it("only the host can reset the clock", function (done) {
+	// 	cohost.on('notHost', function(message) {
+	// 		expect(true).toBeTruthy();
+	// 		done();
+	// 	});
+	// 	cohost.on('timeUpdate', function(runningTime) {
+	// 		expect(runningTime).toNotMatch("00:00:00");
+	// 		done();
+	// 	});
+	// 	host.emit('clockClick');
+	// 	waiter.sleep(1);
+	// 	cohost.emit('resetClock');
+	// });
 });    

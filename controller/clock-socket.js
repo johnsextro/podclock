@@ -9,7 +9,6 @@ var socketsOfClients = {};
 var clock;
 var broadcastInterval;
 var hostInterval;
-var hostId;
 
 exports.registerSocketEvents = function(server) {
   var io = socketio.listen(server);
@@ -43,16 +42,12 @@ exports.registerSocketEvents = function(server) {
 
     socket.on('clockClick', function () {
       if (clock == undefined || !clock.isClockStarted()) {
-        if (socket.id == hostId) {
-          clock = new Podclock();
-          clock.start();
-          hostInterval = setInterval(function() {
-            socket.emit('timeUpdate', clock.getTime());
-            socket.broadcast.emit('timeUpdate', clock.getTime());
-          }, 1000);          
-        } else {
-          socket.emit('notHost');
-        }
+        clock = new Podclock();
+        clock.start();
+        hostInterval = setInterval(function() {
+          socket.emit('timeUpdate', clock.getTime());
+          socket.broadcast.emit('timeUpdate', clock.getTime());
+        }, 1000);          
       } else if (clock.isClockPaused()) {
         clock.resume();
       } else if (clock.isClockStarted() && !clock.isClockPaused()) {
@@ -64,13 +59,11 @@ exports.registerSocketEvents = function(server) {
 
     socket.on('resetClock', function () {
       if (clock != undefined && clock.isClockStarted()) {
-        if (socket.id == hostId) {
-          clock.reset();
-          socket.emit('timeUpdate', clock.getTime());
-          socket.broadcast.emit('timeUpdate', clock.getTime());
-          clearInterval(broadcastInterval);
-          clearInterval(hostInterval);
-        }
+        clock.reset();
+        socket.emit('timeUpdate', clock.getTime());
+        socket.broadcast.emit('timeUpdate', clock.getTime());
+        clearInterval(broadcastInterval);
+        clearInterval(hostInterval);
       }
       suggestedTitles = [];
       showEventTimeCodes = [];
