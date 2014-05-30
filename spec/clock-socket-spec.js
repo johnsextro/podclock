@@ -70,6 +70,14 @@ describe("test the clock socket events", function () {
 		host.emit('clockClick');
 	});
 
+	it("When the host starts the clock and cohosts begin getting clock updates", function(done) {
+		cohost.on('timeUpdate', function(runningTime) {
+			expect(runningTime).toMatch("00:00:01");
+			done();
+		});
+		host.emit('clockClick');
+	});
+
 	it("host resets the clock and cohost receives reset event", function(done) {
 		cohost.on('resetAllShowData', function() {
 			expect(true).toBeTruthy();

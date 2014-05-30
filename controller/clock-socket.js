@@ -7,20 +7,11 @@ var showEventTimeCodes = [];
 var showEventButtons = [];
 var socketsOfClients = {};
 var clock;
-var broadcastInterval;
 var hostInterval;
 
 exports.registerSocketEvents = function(server) {
   var io = socketio.listen(server);
   io.sockets.on('connection', function(socket) {
-    if (clock != undefined && clock.isClockStarted()) {
-      if (broadcastInterval != undefined){
-        broadcastInterval = setInterval(function() {
-          socket.broadcast.emit('timeUpdate', clock.getTime());
-        }, 1000);
-      }
-    }
-
     if (suggestedTitles.length > 0){
       for (var i = 0; i < suggestedTitles.length; i++) {
         socket.emit('addTitleSuggestion', suggestedTitles[i]);
@@ -61,7 +52,6 @@ exports.registerSocketEvents = function(server) {
         clock.reset();
         socket.emit('timeUpdate', clock.getTime());
         socket.broadcast.emit('timeUpdate', clock.getTime());
-        clearInterval(broadcastInterval);
         clearInterval(hostInterval);
       }
       suggestedTitles = [];
