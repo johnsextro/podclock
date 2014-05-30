@@ -6,7 +6,7 @@ var clockSocket = require('../controller/clock-socket.js');
 
 describe("test the clock socket events", function () {
 
-	var socket;
+	var host;
 	var cohost;
 	var server;
 
@@ -19,7 +19,7 @@ describe("test the clock socket events", function () {
 		});
 		clockSocket.registerSocketEvents(server);
 
-	    socket = io.connect('http://localhost:3000', {
+	    host = io.connect('http://localhost:3000', {
 	        'reconnection delay' : 0
 	        , 'reopen delay' : 0
 	        , 'force new connection' : true
@@ -29,7 +29,7 @@ describe("test the clock socket events", function () {
 	        , 'reopen delay' : 0
 	        , 'force new connection' : true
 	    });
-	    socket.on('connect', function() {
+	    host.on('connect', function() {
 	        console.log('host connected...');
 	        done();
 	    });
@@ -37,20 +37,21 @@ describe("test the clock socket events", function () {
 	        console.log('cohost connected...');
 	        done();
 	    });
-	    socket.on('disconnect', function() {
+	    host.on('disconnect', function() {
 	        console.log('host disconnected...');
-	    })
+	    });
 	    cohost.on('disconnect', function() {
 	        console.log('cohost disconnected...');
-	    })
+	    });
+	    host.emit('claimHostRole');
 	});
 
 	afterEach(function(done) {
 	    // Cleanup
-	    if(socket.socket.connected) {
+	    if(host.socket.connected) {
 	        console.log('disconnecting host...');
-	        socket.emit('resetClock');
-	        socket.disconnect();
+	        host.emit('resetClock');
+	        host.disconnect();
 	        done();
 	    } else {
 	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
@@ -68,50 +69,79 @@ describe("test the clock socket events", function () {
 	    done();
 	});
 
-	it("ensure client is getting time updates", function(done) {
-		socket.on('timeUpdate', function(runningTime) {
+	it("host starts the clock and begins getting clock updates", function(done) {
+		host.on('timeUpdate', function(runningTime) {
 			expect(runningTime).toMatch("00:00:01");
 			done();
 		});
-		socket.emit('clockClick');
+		host.emit('clockClick');
 	});
 
-	it("ensure reset message sent to co-hosts", function(done) {
+	it("host resets the clock and cohost receives reset event", function(done) {
 		cohost.on('resetAllShowData', function() {
 			expect(true).toBeTruthy();
 			done();
 		});
-		socket.emit('resetClock');
+		host.emit('resetClock');
 	});
 
-	it("ensure title suggestions sent to co-hosts", function (done) {
+	it("host suggests a title and cohost receives title suggestion", function (done) {
 		cohost.on('addTitleSuggestion', function(data) {
 			expect(data).toMatch('test title suggestion');
 			done();	
 		});
-		socket.emit('titleSuggested', 'test title suggestion');
+		host.emit('titleSuggested', 'test title suggestion');
 	});
 
-	it("ensure new buttons are communicated to co-hosts", function (done) {
+	it("cohost suggests a title and host receives title suggestion", function (done) {
+		host.on('addTitleSuggestion', function(data) {
+			expect(data).toMatch('test title suggestion');
+			done();	
+		});
+		cohost.emit('titleSuggested', 'test title suggestion');
+	});
+
+	it("host creates a new event button and cohost receives add button event", function (done) {
 		cohost.on('addShowEventButton', function(data) {
 			expect(data).toMatch('test button name');
 			done();	
 		});
-		socket.emit('addShowEventButton', 'test button name');
+		host.emit('addShowEventButton', 'test button name');
 	});
 
-	it("ensure event time codes are communicated back to host and to co-hosts", function (done) {
+	it("host logs event and event is sent to host and cohost", function (done) {
 		cohost.on('addEventTimeCode', function(data) {
 			expect(data).toContain('test time code @');
 			done();	
 		});
-		socket.on('addEventTimeCode', function(data) {
+		host.on('addEventTimeCode', function(data) {
 			expect(data).toContain('test time code @');
 			done();	
 		});
-		socket.emit('clockClick');
+		host.emit('clockClick');
 		waiter.sleep(1);
-		socket.emit('showEventTimeCode', 'test time code');
+		host.emit('showEventTimeCode', 'test time code');
 	});
 
+	it("only the host can start the clock", function (done) {
+		cohost.on('notHost', function(message) {
+			expect(true).toBeTruthy();
+			done();
+		});
+		cohost.emit('clockClick');
+	});
+
+	it("only the host can reset the clock", function (done) {
+		cohost.on('notHost', function(message) {
+			expect(true).toBeTruthy();
+			done();
+		});
+		cohost.on('timeUpdate', function(runningTime) {
+			expect(runningTime).toNotMatch("00:00:00");
+			done();
+		});
+		host.emit('clockClick');
+		waiter.sleep(1);
+		cohost.emit('resetClock');
+	});
 });    
