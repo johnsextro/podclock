@@ -13,7 +13,6 @@ var hostInterval;
 exports.registerSocketEvents = function(server) {
   var io = socketio.listen(server);
   io.sockets.on('connection', function(socket) {
-    console.log("io socket connection");
     if (clock != undefined && clock.isClockStarted()) {
       if (broadcastInterval != undefined){
         broadcastInterval = setInterval(function() {

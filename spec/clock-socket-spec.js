@@ -30,18 +30,16 @@ describe("test the clock socket events", function () {
 	        , 'force new connection' : true
 	    });
 	    host.on('connect', function() {
-	        console.log('host connected...');
 	        done();
 	    });
 	    cohost.on('connect', function() {
-	        console.log('cohost connected...');
 	        done();
 	    });
 	    host.on('disconnect', function() {
-	        console.log('host disconnected...');
+	        done();
 	    });
 	    cohost.on('disconnect', function() {
-	        console.log('cohost disconnected...');
+	        done();
 	    });
 	    host.emit('claimHostRole');
 	});
@@ -49,7 +47,6 @@ describe("test the clock socket events", function () {
 	afterEach(function(done) {
 	    // Cleanup
 	    if(host.socket.connected) {
-	        console.log('disconnecting host...');
 	        host.emit('resetClock');
 	        host.disconnect();
 	        done();
@@ -58,12 +55,8 @@ describe("test the clock socket events", function () {
 	        console.log('no connection to break...');
 	    }
 	    if(cohost.socket.connected) {
-	        console.log('disconnecting cohost...');
 	        cohost.disconnect();
 	        done();
-	    } else {
-	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
-	        console.log('no connection to break...');
 	    }
 	    server.close();
 	    done();
