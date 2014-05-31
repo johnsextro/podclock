@@ -7,11 +7,12 @@
       ul.nav.navbar-nav
         li.active: a(href="/") Home
         li: a(href="/myclock") This Agile Life
+      ul.nav.navbar-nav.navbar-right
+        li: a(href="#") Welcome, 
+          span#displayName Username
 .container-fluid
   .jumbotron
     h1 Hello, World!
     p This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
     span#signinButton
       span.g-signin(data-callback="signinCallback",  data-clientid="635171582924-27nrvocqpiijnnmtdc9u6t14lar4tvjn.apps.googleusercontent.com", data-cookiepolicy="single_host_origin", data-scope="profile")
-    p
-      a.btn.btn-primary.btn-large(href="#") Lean more >>
