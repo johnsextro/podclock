@@ -29,7 +29,7 @@
             div.input-group
               input.form-control#show-note(type='text', placeholder='Discussion Note')
               span.input-group-btn
-                button.btn.btn-default#suggest-title Add Note
+                button.btn.btn-default#add-note Add Note
             textarea.form-control(rows='5')
       .panel.panel-default.col-md-6
         .panel-body
@@ -39,16 +39,15 @@
           .row
             textarea.form-control(rows='5')
 
-  .row-fluid
-    .panel.panel-default.col-md-4
-      .panel-body
-        div.input-group
-          input.form-control#title-suggestion(type='text', placeholder='Suggestion')
-          span.input-group-btn
-            button.btn.btn-default#suggest-title Suggest Title
-        h4 Possible Show Titles
-        ol#show-titles
-    
+    .sliding-panel
+      div.input-group
+        input.form-control#title-suggestion(type='text', placeholder='Suggestion')
+        span.input-group-btn
+          button.btn.btn-default#suggest-title Suggest Title
+      h4 Possible Show Titles
+      ol#show-titles
+
+  .row-fluid    
     .panel.panel-default.col-md-4.col-md-offset-4
       .panel-body
         div.input-group

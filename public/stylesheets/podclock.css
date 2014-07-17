@@ -1,0 +1,8 @@
+.sliding-panel {
+	width:300px;
+	float:left;
+	height:550px;
+	background:#d9dada;
+	position:relative;
+	left:-300px;
+}
