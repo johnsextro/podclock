@@ -19,6 +19,10 @@ exports.init = function() {
 	  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 	});
 
+	app.configure('test', function(){
+	  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+	});
+
 	app.configure('production', function(){
 	  app.use(express.errorHandler());
 	});
