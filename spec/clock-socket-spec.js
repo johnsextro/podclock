@@ -67,7 +67,7 @@ describe("test the clock socket events", function () {
 
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
-			expect(runningTime).toMatch("00:00:01");
+			expect(runningTime).toMatch("00:00:99");
 			done();
 		});
 		host.emit('clockClick');
