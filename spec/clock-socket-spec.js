@@ -29,16 +29,19 @@ describe("test the clock socket events", function () {
 	        , 'force new connection' : true
 	    });
 	    host.on('connect', function() {
-	    	console.log('connect');
+	    	console.log('host connect');
 	        done();
 	    });
 	    cohost.on('connect', function() {
+	        console.log('cohost connect');
 	        done();
 	    });
 	    host.on('disconnect', function() {
+	        console.log('host disconnect');
 	        done();
 	    });
 	    cohost.on('disconnect', function() {
+	        console.log('cohost disconnect');
 	        done();
 	    });
 	    host.emit('claimHostRole');
