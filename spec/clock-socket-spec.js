@@ -48,6 +48,7 @@ describe("test the clock socket events", function () {
 	    if(host.socket.connected) {
 	        host.emit('resetClock');
 	        host.disconnect();
+	        done();
 	    } else {
 	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
 	        console.log('no connection to break...');
@@ -56,8 +57,7 @@ describe("test the clock socket events", function () {
 	    //     cohost.disconnect();
 	    //     done();
 	    // }
-	    server.close();
-	    done();
+	    
 	});
 
 	it("host starts the clock and begins getting clock updates", function(done) {
