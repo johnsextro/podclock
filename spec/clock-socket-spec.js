@@ -3,70 +3,71 @@ var clockSocket = require('../controller/clock-socket.js');
 var waiter = require("./waiter.js");
 var appBoot = require('../appBoot.js');
 
-// describe("test the clock socket events", function () {
+describe("test the clock socket events", function () {
 
-// 	var host;
-// 	var cohost;
-// 	var server;
+	var host;
+	var cohost;
+	var server;
+    var app = appBoot.init();
+    server = app.listen(3000, function(){
+	  console.log("Express server listening on port " + app.address().port, app.settings.env);
+	});
 
-// 	beforeEach(function(done) {
+	beforeEach(function(done) {
 // 	    // Setup
-// 	    var app = appBoot.init();
-// 	    server = app.listen(3000, function(){
-// 		  console.log("Express server listening on port " + app.address().port, app.settings.env);
-// 		});
-// 		clockSocket.registerSocketEvents(server);
+		clockSocket.registerSocketEvents(server);
 
-// 	    host = io.connect('http://localhost:3000', {
-// 	        'reconnection delay' : 0
-// 	        , 'reopen delay' : 0
-// 	        , 'force new connection' : true
-// 	    });
+	    host = io.connect('http://localhost:3000', {
+	        'reconnection delay' : 0
+	        , 'reopen delay' : 0
+	        , 'force new connection' : true
+	    });
 // 	    cohost = io.connect('http://localhost:3000', {
 // 	        'reconnection delay' : 0
 // 	        , 'reopen delay' : 0
 // 	        , 'force new connection' : true
 // 	    });
-// 	    host.on('connect', function() {
-// 	    	console.log('host connect');
-// 	    });
+	    host.on('connect', function() {
+	    	console.log('host connect');
+	    	done();
+	    });
 // 	    cohost.on('connect', function() {
 // 	        console.log('cohost connect');
 // 	        done();
 // 	    });
-// 	    host.on('disconnect', function() {
-// 	        console.log('host disconnect');
-// 	    });
+	    host.on('disconnect', function() {
+	        console.log('host disconnect');
+	    });
 // 	    cohost.on('disconnect', function() {
 // 	        console.log('cohost disconnect');
 // 	    });
-// 	});
+	});
 
-// 	afterEach(function(done) {
+	afterEach(function(done) {
 // 	    // Cleanup
-// 	    if(host.socket.connected) {
-// 	        host.emit('resetClock');
-// 	        host.disconnect();
-// 	        done();
-// 	    } else {
-// 	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
-// 	        console.log('no connection to break...');
-// 	    }
-// 	    if(cohost.socket.connected) {
-// 	        cohost.disconnect();
-// 	        done();
-// 	    }
-// 	    server.close();
-// 	    done();
-// 	});
+	    if(host.socket.connected) {
+	        host.emit('resetClock');
+	        host.disconnect();
+	        done();
+	    } else {
+	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
+	        console.log('no connection to break...');
+	    }
+	    // if(cohost.socket.connected) {
+	    //     cohost.disconnect();
+	    //     done();
+	    // }
+	    server.close();
+	    done();
+	});
 
-// 	it("host starts the clock and begins getting clock updates", function(done) {
-// 		host.on('timeUpdate', function(runningTime) {
-// 			expect(runningTime).toMatch("00:00:01");
-// 			done();
-// 		});
-// 		host.emit('clockClick');
-// 	});
+	it("host starts the clock and begins getting clock updates", function(done) {
+		host.on('timeUpdate', function(runningTime) {
+			expect(runningTime).toMatch("00:00:01");
+			done();
+		});
+		host.emit('clockClick');
+	});
 
 // 	it("When the host starts the clock and cohosts begin getting clock updates", function(done) {
 // 		cohost.on('timeUpdate', function(runningTime) {
@@ -143,4 +144,4 @@ var appBoot = require('../appBoot.js');
 // 	// 	waiter.sleep(1);
 // 	// 	cohost.emit('resetClock');
 // 	// });
-// });    
+});
