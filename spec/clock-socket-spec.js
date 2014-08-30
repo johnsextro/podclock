@@ -14,7 +14,6 @@ describe("test the clock socket events", function () {
 	    var app = appBoot.init();
 	    server = app.listen(3000, function(){
 		  console.log("Express server listening on port " + app.address().port, app.settings.env);
-		  done();
 		});
 		clockSocket.registerSocketEvents(server);
 
@@ -30,7 +29,6 @@ describe("test the clock socket events", function () {
 	    });
 	    host.on('connect', function() {
 	    	console.log('host connect');
-	        done();
 	    });
 	    cohost.on('connect', function() {
 	        console.log('cohost connect');
@@ -38,13 +36,10 @@ describe("test the clock socket events", function () {
 	    });
 	    host.on('disconnect', function() {
 	        console.log('host disconnect');
-	        done();
 	    });
 	    cohost.on('disconnect', function() {
 	        console.log('cohost disconnect');
-	        done();
 	    });
-	    host.emit('claimHostRole');
 	});
 
 	afterEach(function(done) {
