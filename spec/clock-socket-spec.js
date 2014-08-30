@@ -23,42 +23,24 @@ describe("test the clock socket events", function () {
 	    });
 	    host.on('connect', function() {
 	    	console.log('host connect');
-	    	done();
 	    }); 	    
 	    host.on('disconnect', function() {
 	        console.log('host disconnect');
 	    });
 
-// 	    cohost = io.connect('http://localhost:3000', {
-// 	        'reconnection delay' : 0
-// 	        , 'reopen delay' : 0
-// 	        , 'force new connection' : true
-// 	    });
-// 	    cohost.on('connect', function() {
-// 	        console.log('cohost connect');
-// 	        done();
-// 	    });
-// 	    cohost.on('disconnect', function() {
-// 	        console.log('cohost disconnect');
-// 	    });
+	    cohost = io.connect('http://localhost:3000', {
+	        'reconnection delay' : 0
+	        , 'reopen delay' : 0
+	        , 'force new connection' : true
+	    });
+	    cohost.on('connect', function() {
+	        console.log('cohost connect');
+	        done();
+	    });
+	    cohost.on('disconnect', function() {
+	        console.log('cohost disconnect');
+	    });
 	});
-
-	// afterEach(function(done) {
- // 	    // Cleanup
-	//     if(host.socket.connected) {
-	//         host.emit('resetClock');
-	//         host.disconnect();
-	//         done();
-	//     } else {
-	//         // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
-	//         console.log('no connection to break...');
-	//     }
-	//     // if(cohost.socket.connected) {
-	//     //     cohost.disconnect();
-	//     //     done();
-	//     // }
-	    
-	// });
 
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
@@ -70,13 +52,16 @@ describe("test the clock socket events", function () {
 		host.emit('clockClick');
 	});
 
-// 	it("When the host starts the clock and cohosts begin getting clock updates", function(done) {
-// 		cohost.on('timeUpdate', function(runningTime) {
-// 			expect(runningTime).toMatch("00:00:01");
-// 			done();
-// 		});
-// 		host.emit('clockClick');
-// 	});
+	it("When the host starts the clock and cohosts begin getting clock updates", function(done) {
+		cohost.on('timeUpdate', function(runningTime) {
+			expect(runningTime).toMatch("00:00:01");
+			host.emit('resetClock');
+			host.disconnect();
+			cohost.disconnect();
+			done();
+		});
+		host.emit('clockClick');
+	});
 
 // 	it("host resets the clock and cohost receives reset event", function(done) {
 // 		cohost.on('resetAllShowData', function() {
