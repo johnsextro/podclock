@@ -4,19 +4,11 @@ var waiter = require("./waiter.js");
 
 describe("runTheClock", function () {
   it("after starting the clock, time should be greater than 0", function () {
-	jasmine.Clock.useMock();
 	clock.reset();
 	clock.start();
-	var elapsedTime = 0;
-	waitsFor(function () {
-		return clock.getMillis() > 0;
-	}, "Failed waiting for clock to elapse", 5000);
-	
-	runs(function() {
-		elapsedTime = clock.getMillis();
-		expect(elapsedTime).toBeGreaterThan(0);
-	});
-	
+	waiter.sleep(5);
+	var elapsedTime = clock.getMillis();
+	expect(elapsedTime).toBeGreaterThan(0);
   });
 
   it("check if the clock is started", function () {
