@@ -78,7 +78,7 @@ describe("test the clock socket events", function () {
 
 	it("host resets the clock and cohost receives reset event", function(done) {
 		cohost.on('resetAllShowData', function() {
-			expect(true).toBeTruthy();
+			expect(false).toBeTruthy();
 			done();
 		});
 		host.emit('resetClock');
