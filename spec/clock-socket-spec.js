@@ -43,26 +43,28 @@ describe("test the clock socket events", function () {
 // 	    });
 	});
 
-	afterEach(function(done) {
- 	    // Cleanup
-	    if(host.socket.connected) {
-	        host.emit('resetClock');
-	        host.disconnect();
-	        done();
-	    } else {
-	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
-	        console.log('no connection to break...');
-	    }
-	    // if(cohost.socket.connected) {
-	    //     cohost.disconnect();
-	    //     done();
-	    // }
+	// afterEach(function(done) {
+ // 	    // Cleanup
+	//     if(host.socket.connected) {
+	//         host.emit('resetClock');
+	//         host.disconnect();
+	//         done();
+	//     } else {
+	//         // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
+	//         console.log('no connection to break...');
+	//     }
+	//     // if(cohost.socket.connected) {
+	//     //     cohost.disconnect();
+	//     //     done();
+	//     // }
 	    
-	});
+	// });
 
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
 			expect(runningTime).toMatch("00:00:01");
+			host.emit('resetClock');
+			host.disconnect();
 			done();
 		});
 		host.emit('clockClick');
