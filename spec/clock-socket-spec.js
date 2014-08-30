@@ -8,14 +8,17 @@ describe("test the clock socket events", function () {
 	var host;
 	var cohost;
 	var server;
-    var app = appBoot.init();
-    server = app.listen(3000, function(){
-	  console.log("Express server listening on port " + app.address().port, app.settings.env);
-	});
-	clockSocket.registerSocketEvents(server);
+    
 
 	beforeEach(function(done) {
  	    // Setup
+    	var app = appBoot.init();
+        server = app.listen(3000, function(){
+		  console.log("Express server listening on port " + app.address().port, app.settings.env);
+		});
+		clockSocket.registerSocketEvents(server);
+
+
 	    host = io.connect('http://localhost:3000', {
 		    'reconnection delay' : 0
 	    	, 'reopen delay' : 0
