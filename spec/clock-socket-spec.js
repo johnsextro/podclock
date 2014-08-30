@@ -16,39 +16,38 @@ describe("test the clock socket events", function () {
 
 	beforeEach(function(done) {
  	    // Setup
-
 	    host = io.connect('http://localhost:3000', {
-	        'reconnection delay' : 0
-	        , 'reopen delay' : 0
-	        , 'force new connection' : true
+		    'reconnection delay' : 0
+	    	, 'reopen delay' : 0
+	    	, 'force new connection' : true
 	    });
+	    host.on('connect', function() {
+	    	console.log('host connect');
+	    	done();
+	    }); 	    
+	    host.on('disconnect', function() {
+	        console.log('host disconnect');
+	    });
+
 // 	    cohost = io.connect('http://localhost:3000', {
 // 	        'reconnection delay' : 0
 // 	        , 'reopen delay' : 0
 // 	        , 'force new connection' : true
 // 	    });
-	    host.on('connect', function() {
-	    	console.log('host connect');
-	    	done();
-	    });
 // 	    cohost.on('connect', function() {
 // 	        console.log('cohost connect');
 // 	        done();
 // 	    });
-	    host.on('disconnect', function() {
-	        console.log('host disconnect');
-	    });
 // 	    cohost.on('disconnect', function() {
 // 	        console.log('cohost disconnect');
 // 	    });
 	});
 
 	afterEach(function(done) {
-// 	    // Cleanup
+ 	    // Cleanup
 	    if(host.socket.connected) {
 	        host.emit('resetClock');
 	        host.disconnect();
-	        done();
 	    } else {
 	        // There will not be a connection unless you have done() in beforeEach, socket.on('connect'...)
 	        console.log('no connection to break...');
