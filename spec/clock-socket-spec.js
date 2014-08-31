@@ -53,7 +53,6 @@ describe("test the clock socket events", function () {
 
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
-			console.log("************checking time " + runningTime);
 			expect(runningTime).toMatch("00:00:01");
 			done();
 		});
@@ -100,19 +99,19 @@ describe("test the clock socket events", function () {
 		host.emit('addShowEventButton', 'test button name');
 	});
 
-	it("host logs event and event is sent to host and cohost", function (done) {
-		cohost.on('addEventTimeCode', function(data) {
-			expect(data).toContain('test time code @');
-			done();	
-		});
-		host.on('addEventTimeCode', function(data) {
-			expect(data).toContain('test time code @');
-			done();	
-		});
-		host.emit('clockClick');
-		waiter.sleep(1);
-		host.emit('showEventTimeCode', 'test time code');
-	});
+	// it("host logs event and event is sent to host and cohost", function (done) {
+	// 	cohost.on('addEventTimeCode', function(data) {
+	// 		expect(data).toContain('test time code @');
+	// 		done();	
+	// 	});
+	// 	host.on('addEventTimeCode', function(data) {
+	// 		expect(data).toContain('test time code @');
+	// 		done();	
+	// 	});
+	// 	host.emit('clockClick');
+	// 	waiter.sleep(1);
+	// 	host.emit('showEventTimeCode', 'test time code');
+	// });
 
 	// it("only the host can start the clock", function (done) {
 	// 	cohost.on('notHost', function(message) {
