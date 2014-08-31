@@ -75,29 +75,29 @@ describe("test the clock socket events", function () {
 		host.emit('resetClock');
 	});
 
-	it("host suggests a title and cohost receives title suggestion", function (done) {
-		cohost.on('addTitleSuggestion', function(data) {
-			expect(data).toMatch('test title suggestion');
-			done();	
-		});
-		host.emit('titleSuggested', 'test title suggestion');
-	});
+	// it("host suggests a title and cohost receives title suggestion", function (done) {
+	// 	cohost.on('addTitleSuggestion', function(data) {
+	// 		expect(data).toMatch('test title suggestion');
+	// 		done();	
+	// 	});
+	// 	host.emit('titleSuggested', 'test title suggestion');
+	// });
 
-	it("cohost suggests a title and host receives title suggestion", function (done) {
-		host.on('addTitleSuggestion', function(data) {
-			expect(data).toMatch('test title suggestion');
-			done();	
-		});
-		cohost.emit('titleSuggested', 'test title suggestion');
-	});
+	// it("cohost suggests a title and host receives title suggestion", function (done) {
+	// 	host.on('addTitleSuggestion', function(data) {
+	// 		expect(data).toMatch('test title suggestion');
+	// 		done();	
+	// 	});
+	// 	cohost.emit('titleSuggested', 'test title suggestion');
+	// });
 
-	it("host creates a new event button and cohost receives add button event", function (done) {
-		cohost.on('addShowEventButton', function(data) {
-			expect(data).toMatch('test button name');
-			done();	
-		});
-		host.emit('addShowEventButton', 'test button name');
-	});
+	// it("host creates a new event button and cohost receives add button event", function (done) {
+	// 	cohost.on('addShowEventButton', function(data) {
+	// 		expect(data).toMatch('test button name');
+	// 		done();	
+	// 	});
+	// 	host.emit('addShowEventButton', 'test button name');
+	// });
 
 	// it("host logs event and event is sent to host and cohost", function (done) {
 	// 	cohost.on('addEventTimeCode', function(data) {
