@@ -3,57 +3,58 @@ var clockSocket = require('../controller/clock-socket.js');
 var waiter = require("./waiter.js");
 var appBoot = require('../appBoot.js');
 
-describe("test the clock socket events", function () {
-
-	var host;
-	var cohost;
-	var server;
+var host;
+var cohost;
+var server;
     
 
-	beforeEach(function(done) {
- 	    // Setup
-    	var app = appBoot.init();
-        server = app.listen(3000, function(){
-		  console.log("Express server listening on port " + app.address().port, app.settings.env);
-		});
-		clockSocket.registerSocketEvents(server);
-
-
-	    host = io.connect('http://localhost:3000', {
-		    'reconnection delay' : 0
-	    	, 'reopen delay' : 0
-	    	, 'force new connection' : true
-	    });
-	    host.on('connect', function() {
-	    	console.log('host connect');
-	    }); 	    
-	    host.on('disconnect', function() {
-	        console.log('host disconnect');
-	    });
-
-	    cohost = io.connect('http://localhost:3000', {
-	        'reconnection delay' : 0
-	        , 'reopen delay' : 0
-	        , 'force new connection' : true
-	    });
-	    cohost.on('connect', function() {
-	        console.log('cohost connect');
-	        done();
-	    });
-	    cohost.on('disconnect', function() {
-	        console.log('cohost disconnect');
-	    });
+beforeEach(function(done) {
+	    // Setup
+	var app = appBoot.init();
+    server = app.listen(3000, function(){
+	  console.log("Express server listening on port " + app.address().port, app.settings.env);
 	});
+	clockSocket.registerSocketEvents(server);
 
-	afterEach(function() {
-		server.close();
-	});
+    host = io.connect('http://localhost:3000', {
+	    'reconnection delay' : 0
+    	, 'reopen delay' : 0
+    	, 'force new connection' : true
+    });
+    host.on('connect', function() {
+    	console.log('host connect');
+    }); 	    
+    host.on('disconnect', function() {
+        console.log('host disconnect');
+    });
 
+    cohost = io.connect('http://localhost:3000', {
+        'reconnection delay' : 0
+        , 'reopen delay' : 0
+        , 'force new connection' : true
+    });
+    cohost.on('connect', function() {
+        console.log('cohost connect');
+        done();
+    });
+    cohost.on('disconnect', function() {
+        console.log('cohost disconnect');
+    });
+});
+
+afterEach(function(done) {
+	server.close();
+	done();
+});
+
+
+describe("test the clock socket events", function () {
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
 			expect(runningTime).toMatch("00:00:01");
 			host.emit('resetClock');
 			host.disconnect();
+			cohost.disconnect();
 			done();
 		});
 		host.emit('clockClick');
