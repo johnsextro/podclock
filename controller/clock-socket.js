@@ -75,9 +75,5 @@ exports.registerSocketEvents = function(server) {
       showEventButtons.push(buttonName);
       socket.broadcast.emit('addShowEventButton', buttonName);
     });
-
-    socket.on('claimHostRole', function() {
-      hostId = socket.id;
-    });
   });
 }

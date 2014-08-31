@@ -6,55 +6,55 @@ var appBoot = require('../appBoot.js');
 var host;
 var cohost;
 var server;
-    
-
-beforeEach(function(done) {
-	    // Setup
-	var app = appBoot.init();
-    server = app.listen(3000, function(){
-	  console.log("Express server listening on port " + app.address().port, app.settings.env);
-	});
-	clockSocket.registerSocketEvents(server);
-
-    host = io.connect('http://localhost:3000', {
-	    'reconnection delay' : 0
-    	, 'reopen delay' : 0
-    	, 'force new connection' : true
-    });
-    host.on('connect', function() {
-    	console.log('host connect');
-    }); 	    
-    host.on('disconnect', function() {
-        console.log('host disconnect');
-    });
-
-    cohost = io.connect('http://localhost:3000', {
-        'reconnection delay' : 0
-        , 'reopen delay' : 0
-        , 'force new connection' : true
-    });
-    cohost.on('connect', function() {
-        console.log('cohost connect');
-        done();
-    });
-    cohost.on('disconnect', function() {
-        console.log('cohost disconnect');
-    });
-});
-
-afterEach(function(done) {
-	server.close();
-	done();
-});
-
 
 describe("test the clock socket events", function () {
+
+	beforeEach(function(done) {
+		    // Setup
+		var app = appBoot.init();
+	    server = app.listen(3000, function(){
+		  console.log("Express server listening on port " + app.address().port, app.settings.env);
+		});
+		clockSocket.registerSocketEvents(server);
+
+	    host = io.connect('http://localhost:3000', {
+		    'reconnection delay' : 0
+	    	, 'reopen delay' : 0
+	    	, 'force new connection' : true
+	    });
+	    host.on('connect', function() {
+	    	console.log('host connect');
+	    }); 	    
+	    host.on('disconnect', function() {
+	        console.log('host disconnect');
+	    });
+
+	    cohost = io.connect('http://localhost:3000', {
+	        'reconnection delay' : 0
+	        , 'reopen delay' : 0
+	        , 'force new connection' : true
+	    });
+	    cohost.on('connect', function() {
+	        console.log('cohost connect');
+	        done();
+	    });
+	    cohost.on('disconnect', function() {
+	        console.log('cohost disconnect');
+	    });
+	});
+
+	afterEach(function() {
+		host.emit('resetClock');
+		host.disconnect();
+		cohost.disconnect();
+		console.log("closing server");
+		server.close();
+	});
+
 	it("host starts the clock and begins getting clock updates", function(done) {
 		host.on('timeUpdate', function(runningTime) {
+			console.log("************checking time " + runningTime);
 			expect(runningTime).toMatch("00:00:01");
-			host.emit('resetClock');
-			host.disconnect();
-			cohost.disconnect();
 			done();
 		});
 		host.emit('clockClick');
@@ -63,9 +63,6 @@ describe("test the clock socket events", function () {
 	it("When the host starts the clock and cohosts begin getting clock updates", function(done) {
 		cohost.on('timeUpdate', function(runningTime) {
 			expect(runningTime).toMatch("00:00:01");
-			host.emit('resetClock');
-			host.disconnect();
-			cohost.disconnect();
 			done();
 		});
 		host.emit('clockClick');
