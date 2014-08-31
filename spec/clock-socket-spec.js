@@ -112,6 +112,7 @@ describe("test the clock socket events", function () {
 		waiter.sleep(1);
 		host.emit('showEventTimeCode', 'test time code');
 	});
+	
 
 	// it("only the host can start the clock", function (done) {
 	// 	cohost.on('notHost', function(message) {
