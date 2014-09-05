@@ -2,6 +2,10 @@
     "name": "podclock"
   , "version": "0.0.1"
   , "private": true
+  , "scripts": {
+  		"start": "node app.js",
+  		"test": "jasmine-node spec --autotest --color --verbose --watch controller"
+  }
   , "dependencies": {
       "express": "2.5.8"
     , "less": "1.3.3"
