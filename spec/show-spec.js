@@ -32,8 +32,7 @@ describe("Testing the functionality of the 'Show' module", function () {
 	it("No duplicate segmentsNames", function() {
 		show.createSegment("blah", "Hello everyone");
 		show.createSegment("blah", "abjakdjfik");
-		var segmentJSON = show.getSegment("blah");
-		expect('{"segmentName": "blah", "discussion": "abjakdjfik"}').toMatch(segmentJSON);
+		expect(1).toMatch(show.getNumberOfSegments());
 	});
 
 	it("Trying to create a segment that exists will update the existing segment", function() {

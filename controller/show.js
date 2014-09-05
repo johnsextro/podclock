@@ -16,6 +16,10 @@ function Show() {
 		return findBySegmentName(segmentName);
 	}
 
+	this.getNumberOfSegments = function(){
+		return segments.length;
+	}
+
 	function findBySegmentName(segmentName) {
 	 	var index = segmentExists(segmentName)
 	 	if(index != -1){
