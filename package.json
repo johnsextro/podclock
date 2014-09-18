@@ -4,7 +4,8 @@
   , "private": true
   , "scripts": {
   		"start": "node app.js",
-  		"test": "jasmine-node spec --autotest --color --verbose --watch controller"
+  		"autotest": "jasmine-node spec --autotest --color --verbose --watch controller",
+      "test": "jasmine-node spec --color --verbose"
   }
   , "dependencies": {
       "express": "2.5.8"
