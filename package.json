@@ -1,16 +1,17 @@
 {
-    "name": "podclock"
-  , "version": "0.0.1"
-  , "private": true
-  , "scripts": {
-  		"start": "node app.js",
-  		"autotest": "jasmine-node spec --autotest --color --verbose --watch controller",
-      "test": "jasmine-node spec --color --verbose"
-  }
-  , "dependencies": {
-      "express": "2.5.8"
-    , "less": "1.3.3"
-    , "jade": ">= 0.0.1"
-    , "socket.io": "latest"
+  "name": "podclock",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "autotest": "jasmine-node spec --autotest --color --verbose --watch controller",
+    "test": "jasmine-node spec --color --verbose"
+  },
+  "dependencies": {
+    "express": "2.5.8",
+    "jade": ">= 0.0.1",
+    "less": "1.3.3",
+    "mongoose": "^3.8.19",
+    "socket.io": "latest"
   }
 }
