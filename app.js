@@ -6,6 +6,7 @@
 var routes = require('./routes')
   , http = require('http')
   , clockSocket = require('./controller/clock-socket.js')
+  , db = require('./db')
   , appBoot = require('./appBoot.js');
 
 var app = appBoot.init();
