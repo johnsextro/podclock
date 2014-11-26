@@ -1,3 +1,15 @@
+.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle
+      a.navbar-brand(href="#")= title
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active: a(href="/") Home
+        li: a(href="/myclock") This Agile Life
+      ul.nav.navbar-nav.navbar-right
+        li: a(href="#") Welcome, 
+          span#displayName Username
 ul
   each show, index in shows
      - show = show.getInformation()
