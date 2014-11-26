@@ -3,25 +3,7 @@
  * GET home page.
  */
 
-var show = require('../show');
-
-var show1 = show({
-	id: '101',
-	showNumber: '10',
-	podcast: 'This Agile Life',
-	notes: 'My show notes'
-});
-
-var show2 = show({
-	id: '102',
-	showNumber: '11',
-	podcast: 'This Agile Life',
-	notes: 'My show notes for show 2'
-});
-
-var shows = [];
-shows[0] = show1;
-shows[1] = show2;
+var ShowDB = require('../schema/shows');
 
 exports.show = function(req, res){
 	var number = req.param('number');
@@ -39,5 +21,11 @@ exports.index = function(req, res){
 };
 
 exports.list = function(req, res) {
-	res.render('listshows', {title: 'Shows', shows: shows});
+	shows = ShowDB.find().exec(function(err, shows) {
+		if(err)	{
+			console.log(err);
+		} else {
+			res.render('listshows', {title: 'Shows', shows: shows});
+		}
+	}); 
 };
