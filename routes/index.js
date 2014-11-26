@@ -13,7 +13,7 @@ var show1 = show({
 });
 
 var show2 = show({
-	id: '101',
+	id: '102',
 	showNumber: '11',
 	podcast: 'This Agile Life',
 	notes: 'My show notes for show 2'
@@ -35,5 +35,9 @@ exports.show = function(req, res){
 };
 
 exports.index = function(req, res){
-	res.render('index', {title: 'Podclock'})
+	res.render('index', {title: 'Podclock'});
+};
+
+exports.list = function(req, res) {
+	res.render('listshows', {title: 'Shows', shows: shows});
 };

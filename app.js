@@ -33,6 +33,7 @@ app.get('/podcast/:id', function (req, res) {
   res.render('myclock', { title: podcast});
 });
 app.get('/show/:number', routes.show);
+app.get('/list', routes.list);
 
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);
