@@ -17,7 +17,13 @@ exports.show = function(req, res){
 };
 
 exports.index = function(req, res){
-	res.render('index', {title: 'Podclock'});
+	shows = ShowDB.find().sort('-showNumber').exec(function(err, shows) {
+		if(err)	{
+			console.log(err);
+		} else {
+			res.render('index', {title: 'Shows', shows: shows});
+		}
+	});	
 };
 
 exports.list = function(req, res) {
