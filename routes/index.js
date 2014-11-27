@@ -12,7 +12,7 @@ exports.show = function(req, res){
 		if(err)	{
 			console.log(err);
 		} else {
-			res.json(shows[0]);
+			res.render('notes', {title: 'Notes', show: shows[0]});
 		}
 	});
 
