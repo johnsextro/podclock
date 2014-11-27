@@ -16,10 +16,8 @@
     p Helping you make the best info-tainment.  Let's get started.
 
 .container-fluid
-  .panel.panel-default
+  .panel.panel-default.col-md-4
     .panel-body
-      h3 Episodes
-      h4
-        ul.list-group
-          each show, index in shows
-            li=show.showNumber
+      h3.ul.list-group Episodes
+        each show, index in shows
+          li: a(href="/show/#{show.showNumber}") #{show.showNumber}
