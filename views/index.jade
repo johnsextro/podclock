@@ -15,6 +15,11 @@
     h1 Welcome to Podclock!
     p Helping you make the best info-tainment.  Let's get started.
 
-ul
-  each show, index in shows
-     li=show.showNumber
+.container-fluid
+  .panel.panel-default
+    .panel-body
+      h3 Episodes
+      h4
+        ul.list-group
+          each show, index in shows
+            li=show.showNumber
