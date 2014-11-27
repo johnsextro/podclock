@@ -34,6 +34,9 @@ app.get('/podcast/:id', function (req, res) {
 });
 app.get('/show/:number', routes.show);
 app.get('/list', routes.list);
+app.get('/create', function(req, res) {
+  res.render('create', {title: 'New'});
+});
 
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);

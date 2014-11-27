@@ -1,0 +1,32 @@
+.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle
+      a.navbar-brand(href="#")= title
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li.active: a(href="/") Home
+      
+
+.container-fluid
+  .row-fluid
+    .panel.panel-default.col-md-6
+      .panel-body
+        input.form-control#title-suggestion(type='text', placeholder='Segment Name/Topic')
+        textarea.form-control(rows="10", placeholder='Discuss notes')
+        button.btn.btn-default#suggest-title Suggest Title
+        
+    
+    .panel.panel-default.col-md-6
+      .panel-body
+        div.input-group
+          input.form-control#event-name(type='text', placeholder='Event Button Text')
+          span.input-group-btn
+            button.btn.btn-default#create-event Create Event Button
+        h4 Events & Time Codes
+        div.btn-group.btn-group-vertical.pull-right#event-buttons
+          button.btn.btn-default.event_time_code_btn Um / Uh / And
+          button.btn.btn-default.event_time_code_btn Silence
+          button.btn.btn-default.event_time_code_btn Talk over
+        div.pull-left
+          ul.list-group#time-codes    
