@@ -8,11 +8,13 @@ var ShowDB = require('../schema/shows');
 exports.show = function(req, res){
 	var number = req.param('number');
 
-	if (typeof shows[number] === 'undefined') {
-		res.status(404).json({status: 'error'});
-	} else {
-		res.json(shows[number].getInformation());
-	}
+	shows = ShowDB.find().where('showNumber').equals(number).exec(function(err, shows) {
+		if(err)	{
+			console.log(err);
+		} else {
+			res.json(shows[0]);
+		}
+	});
 
 };
 
@@ -27,7 +29,7 @@ exports.index = function(req, res){
 };
 
 exports.list = function(req, res) {
-	shows = ShowDB.find().exec(function(err, shows) {
+	shows = ShowDB.find().sort('-showNumber').exec(function(err, shows) {
 		if(err)	{
 			console.log(err);
 		} else {
