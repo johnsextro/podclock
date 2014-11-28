@@ -3,6 +3,8 @@ html
   head
     title= title
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    script(src="../javascripts/jquery-1.11.0.js")
+    script(src='../javascripts/create-notes.js')
   body
     .navbar.navbar-default
       .container-fluid
@@ -29,17 +31,6 @@ html
           .panel-body
             input.form-control#segment-name(type='text', placeholder='Segment Name/Topic')
             textarea.form-control#segment-notes(rows="10", placeholder='Discuss notes')
-            button.btn.btn-default#suggest-title Suggest Title
+            button.btn.btn-default#add-segment Add Segment
         .panel.panel-default.col-md-6
-          .panel-body
-            div.input-group
-              input.form-control#event-name(type='text', placeholder='Event Button Text')
-              span.input-group-btn
-                button.btn.btn-default#create-event Create Event Button
-            h4 Events & Time Codes
-            div.btn-group.btn-group-vertical.pull-right#event-buttons
-              button.btn.btn-default.event_time_code_btn Um / Uh / And
-              button.btn.btn-default.event_time_code_btn Silence
-              button.btn.btn-default.event_time_code_btn Talk over
-            div.pull-left
-              ul.list-group#time-codes    
+          .panel-body#segment-list
