@@ -6,17 +6,24 @@
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li.active: a(href="/") Home
-      
-
 .container-fluid
   .row-fluid
+    .panel.panel-default
+      .panel-body
+        form.form-horizontal  
+          div.form-group
+            label.col-sm-1.control-label(for='showNumber') Episode
+            div.col-sm-2
+              input.form-control#showNumber(type='text', placeholder='Episode #')
+          div.form-group
+            label.col-sm-1.control-label(for='episodeTitle') Show Title
+            div.col-sm-2
+              input.form-control#episodeTitle(type='text', placeholder='Witty Title')    
     .panel.panel-default.col-md-6
       .panel-body
-        input.form-control#title-suggestion(type='text', placeholder='Segment Name/Topic')
-        textarea.form-control(rows="10", placeholder='Discuss notes')
+        input.form-control#segment-name(type='text', placeholder='Segment Name/Topic')
+        textarea.form-control#segment-notes(rows="10", placeholder='Discuss notes')
         button.btn.btn-default#suggest-title Suggest Title
-        
-    
     .panel.panel-default.col-md-6
       .panel-body
         div.input-group
