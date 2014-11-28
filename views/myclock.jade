@@ -1,3 +1,12 @@
+doctype
+html
+  head
+    title= title
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    script(src="/socket.io/socket.io.js")
+    script(src="../javascripts/jquery-1.11.0.js")
+    script(src='../javascripts/run-show.js')
+  body
 .navbar.navbar-default
   .container-fluid
     .navbar-header
@@ -6,8 +15,6 @@
     .collapse.navbar-collapse
       ul.nav.navbar-nav
         li.active: a(href="/") Home
-      
-
 .container-fluid
   .row-fluid
     .row

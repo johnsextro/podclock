@@ -1,39 +1,45 @@
-.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle
-      a.navbar-brand(href="#")= title
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li.active: a(href="/") Home
-.container-fluid
-  .row-fluid
-    .panel.panel-default
-      .panel-body
-        form.form-horizontal  
-          div.form-group
-            label.col-sm-1.control-label(for='showNumber') Episode
-            div.col-sm-2
-              input.form-control#showNumber(type='text', placeholder='Episode #')
-          div.form-group
-            label.col-sm-1.control-label(for='episodeTitle') Show Title
-            div.col-sm-2
-              input.form-control#episodeTitle(type='text', placeholder='Witty Title')    
-    .panel.panel-default.col-md-6
-      .panel-body
-        input.form-control#segment-name(type='text', placeholder='Segment Name/Topic')
-        textarea.form-control#segment-notes(rows="10", placeholder='Discuss notes')
-        button.btn.btn-default#suggest-title Suggest Title
-    .panel.panel-default.col-md-6
-      .panel-body
-        div.input-group
-          input.form-control#event-name(type='text', placeholder='Event Button Text')
-          span.input-group-btn
-            button.btn.btn-default#create-event Create Event Button
-        h4 Events & Time Codes
-        div.btn-group.btn-group-vertical.pull-right#event-buttons
-          button.btn.btn-default.event_time_code_btn Um / Uh / And
-          button.btn.btn-default.event_time_code_btn Silence
-          button.btn.btn-default.event_time_code_btn Talk over
-        div.pull-left
-          ul.list-group#time-codes    
+doctype
+html
+  head
+    title= title
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+  body
+    .navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle
+          a.navbar-brand(href="#")= title
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active: a(href="/") Home
+    .container-fluid
+      .row-fluid
+        .panel.panel-default
+          .panel-body
+            form.form-horizontal  
+              div.form-group
+                label.col-sm-1.control-label(for='showNumber') Episode
+                div.col-sm-2
+                  input.form-control#showNumber(type='text', placeholder='Episode #')
+              div.form-group
+                label.col-sm-1.control-label(for='episodeTitle') Show Title
+                div.col-sm-2
+                  input.form-control#episodeTitle(type='text', placeholder='Witty Title')    
+        .panel.panel-default.col-md-6
+          .panel-body
+            input.form-control#segment-name(type='text', placeholder='Segment Name/Topic')
+            textarea.form-control#segment-notes(rows="10", placeholder='Discuss notes')
+            button.btn.btn-default#suggest-title Suggest Title
+        .panel.panel-default.col-md-6
+          .panel-body
+            div.input-group
+              input.form-control#event-name(type='text', placeholder='Event Button Text')
+              span.input-group-btn
+                button.btn.btn-default#create-event Create Event Button
+            h4 Events & Time Codes
+            div.btn-group.btn-group-vertical.pull-right#event-buttons
+              button.btn.btn-default.event_time_code_btn Um / Uh / And
+              button.btn.btn-default.event_time_code_btn Silence
+              button.btn.btn-default.event_time_code_btn Talk over
+            div.pull-left
+              ul.list-group#time-codes    

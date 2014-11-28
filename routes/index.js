@@ -23,7 +23,7 @@ exports.index = function(req, res){
 		if(err)	{
 			console.log(err);
 		} else {
-			res.render('index', {title: 'Shows', shows: shows});
+			res.render('index', {title: 'Podclock', shows: shows});
 		}
 	});	
 };

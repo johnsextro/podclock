@@ -1,25 +1,31 @@
-.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle
-      a.navbar-brand(href="#")= title
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li.active: a(href="/") Home
-        li: a(href="/myclock") This Agile Life
-      ul.nav.navbar-nav.navbar-right
-        li: a(href="#") Welcome, 
-          span#displayName Username
-.container-fluid
-  .jumbotron
-    h1 Welcome to Podclock!
-    p Helping you make the best info-tainment.  Let's get started.
+doctype
+html
+  head
+    title= title
+    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+  body
+    .navbar.navbar-default
+      .container-fluid
+        .navbar-header
+          button.navbar-toggle
+          a.navbar-brand(href="#")= title
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active: a(href="/") Home
+            li: a(href="/myclock") This Agile Life
+          ul.nav.navbar-nav.navbar-right
+            li: a(href="#") Welcome, 
+              span#displayName Username
+    .container-fluid
+      .jumbotron
+        h1 Welcome to Podclock!
+        p Helping you make the best info-tainment.  Let's get started.
 
-.container-fluid
-  .panel.panel-default.col-md-4
-    .panel-body.col-md-4
-      h3.ul.list-group Episodes
-        each show, index in shows
-          li: a(href="/show/#{show.showNumber}") #{show.showNumber}
-    .panel-body.col-md-2.col-md-offset-3
-      a(href="/create").btn.btn-lg.btn-primary New Episode
+    .container-fluid
+      .panel.panel-default.col-md-4
+        .panel-body.col-md-4
+          h3.ul.list-group Episodes
+            each show, index in shows
+              li: a(href="/show/#{show.showNumber}") #{show.showNumber}
+        .panel-body.col-md-2.col-md-offset-3
+          a(href="/create").btn.btn-lg.btn-primary New Episode
