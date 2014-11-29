@@ -1,6 +1,6 @@
 function addSegment(segment, notes) {
-  $('#segment-list').append('<div class="panel panel-default"><label>' 
-  	+ segment + '</label><br/><label>' + notes + '</label>');
+  $('#segment-list').append('<div class="panel panel-default"><h4 class="panel-title panel-heading">' 
+  	+ segment + '<span class="glyphicon glyphicon-remove" aria-hidden="true"</span></h4><label>' + notes + '</label></div>');
 }
 
 $(function() {
