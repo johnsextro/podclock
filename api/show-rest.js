@@ -21,3 +21,22 @@ exports.allShows = function(req, res){
 		}
 	});
 };
+
+exports.create = function(req, res){
+    console.log("POST: ");
+	console.log(req.body);
+	var show = new ShowDB({
+		id: req.body.id,
+		showNumber: req.body.showNumber,
+		podcast: req.body.podcast,
+		notes: req.body.notes
+	});
+	show.save(function (err) {
+	if (!err) {
+		return console.log("created");
+	} else {
+		return console.log(err);
+	}
+	});
+	return res.send(show);
+};
