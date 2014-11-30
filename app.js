@@ -7,7 +7,8 @@ var routes = require('./routes')
   , http = require('http')
   , clockSocket = require('./controller/clock-socket.js')
   , db = require('./db')
-  , appBoot = require('./appBoot.js');
+  , appBoot = require('./appBoot.js')
+  , showrest = require('./api/show-rest');
 
 var app = appBoot.init();
 
@@ -37,6 +38,8 @@ app.get('/list', routes.list);
 app.get('/create', function(req, res) {
   res.render('create', {title: 'New'});
 });
+app.get('/api/show/:number', showrest.show);
+app.get('/api/allshows', showrest.allShows);
 
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);
