@@ -26,10 +26,10 @@ exports.create = function(req, res){
     console.log("POST: ");
 	console.log(req.body);
 	var show = new ShowDB({
-		id: req.body.id,
 		showNumber: req.body.showNumber,
 		podcast: req.body.podcast,
-		notes: req.body.notes
+		notes: req.body.notes,
+		showTitle: req.body.showTitle
 	});
 	show.save(function (err) {
 	if (!err) {
