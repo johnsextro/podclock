@@ -14,7 +14,6 @@ function saveNotes() {
     data: JSON.stringify(showData),
     dataType: "json",
     success: function(data) {
-      console.log("success");
       $('#successMessage').show();
       $('#successMessage').fadeOut(6000, function(){});
       $('#segment-name').focus();
