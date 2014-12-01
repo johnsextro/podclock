@@ -14,4 +14,14 @@ $(function() {
     $('#segment-notes').val('');
   });
 
+  $('#save').click(function(event) {
+    var showData = {showNumber: $('#showNumber').val(), podcast: 1, notes: "Default Notes", showTitle: $('#episodeTitle').val()};
+    $.ajax({type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "/api/createshow",
+      data: JSON.stringify(showData),
+      dataType: "json"
+    });
+  });
+
 });
