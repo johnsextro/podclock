@@ -17,6 +17,7 @@ function saveNotes() {
       console.log("success");
       $('#successMessage').show();
       $('#successMessage').fadeOut(6000, function(){});
+      $('#segment-name').focus();
     }
   });
 }
