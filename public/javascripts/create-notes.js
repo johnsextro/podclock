@@ -5,8 +5,8 @@ function addSegment(segment, notes) {
   	+ '<span class="pull-left"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;' 
     + '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>&nbsp;'
     + '<span>' + segment + '</span>'
-  	+ '<span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span></h4><label>' 
-  	+ notes + '</label></div>');
+  	+ '<span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span></h4>'
+    + '<label>' + notes + '</label></div>');
   segments.push({name: segment, notes: notes, position: segments.length + 1});
 }
 
