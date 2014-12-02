@@ -7,7 +7,10 @@ function addSegment(segment, notes) {
 }
 
 function saveNotes() {
-  var showData = {showNumber: $('#showNumber').val(), podcast: 1, notes: "Default Notes", showTitle: $('#episodeTitle').val()};
+  var segments = [{
+    name: 'Tweet shoutouts', notes: 'First tweet', position: 1},
+    {name: 'Discussion', notes: 'Topic', position: 2}];
+  var showData = {showNumber: $('#showNumber').val(), podcast: 1, notes: "Default Notes", showTitle: $('#episodeTitle').val(), segments: segments};
   $.ajax({type: "POST",
     contentType: "application/json; charset=utf-8",
     url: "/api/createshow",

@@ -29,7 +29,8 @@ exports.create = function(req, res){
 		showNumber: req.body.showNumber,
 		podcast: req.body.podcast,
 		notes: req.body.notes,
-		showTitle: req.body.showTitle
+		showTitle: req.body.showTitle,
+		segments: req.body.segments
 	});
 	show.save(function (err) {
 	if (!err) {
