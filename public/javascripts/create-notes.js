@@ -2,9 +2,10 @@ var segments = [];
 
 function addSegment(segment, notes) {
   $('#segment-list').append('<div class="panel panel-default"><h4 class="panel-title panel-heading">' 
-  	+ segment + '<span class="col-md-offset-10"><span class="glyphicon glyphicon-remove" aria-hidden="true"</span>' 
-  	+ '<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"</span>' 
-  	+ '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"</span></span></h4><label>' 
+  	+ '<span class="pull-left"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;' 
+    + '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>&nbsp;'
+    + '<span>' + segment + '</span>'
+  	+ '<span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span></h4><label>' 
   	+ notes + '</label></div>');
   segments.push({name: segment, notes: notes, position: segments.length + 1});
 }
