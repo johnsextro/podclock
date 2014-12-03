@@ -1,13 +1,20 @@
 var segments = [];
 
 function addSegment(segment, notes) {
-  $('#segment-list').append('<div class="panel panel-default"><h4 class="panel-title panel-heading">' 
-  	+ '<span class="pull-left"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;' 
-    + '<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>&nbsp;'
-    + '<span>' + segment + '</span>'
-  	+ '<span class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span></h4>'
-    + '<label>' + notes + '</label></div>');
-  segments.push({name: segment, notes: notes, position: segments.length + 1});
+  var segmentNumber = segments.length + 1;
+  var randomId = createRandomId();
+  var segDivId = 'seg' + randomId;
+  var headingId = 'heading' + randomId;
+  var removeSegId = 'remove-seg' + randomId;
+  $('#segment-list').append('<div id=' + segDivId + ' class="panel panel-default"></div>');
+  $('#' + segDivId).append('<h4 id=' + headingId + ' class="panel-title panel-heading"></h4>');
+  $('#' + headingId).append('<span class="pull-left"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;');
+  $('#' + headingId).append('<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>&nbsp;');
+  $('#' + headingId).append('<span>' + segment + '</span>');
+  $('#' + headingId).append('<span id=' + removeSegId + ' class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span>');
+  $('#' + segDivId).append('<label>' + notes + '</label>');
+  segments.push({name: segment, notes: notes, position: segmentNumber});
+  $('#' + removeSegId).click({segmentId: randomId}, removeSegment);
 }
 
 function saveNotes() {
@@ -23,6 +30,24 @@ function saveNotes() {
       $('#segment-name').focus();
     }
   });
+}
+
+function removeSegment(event) {
+  var segmentId = event.data.segmentId;
+  segments.splice(position, 1);
+  $('#seg' + position).remove();
+}
+
+function createRandomId() {
+  var hash = 0, i, chr, len;
+  var current_date = new Date().toString()
+  if (current_date.length == 0) return hash;
+  for (i = 0, len = current_date.length; i < len; i++) {
+    chr   = current_date.charCodeAt(i);
+    hash  = ((hash << 5) - hash) + chr;
+    hash |= 0; // Convert to 32bit integer
+  }
+  return hash;
 }
 
 $(function() {
