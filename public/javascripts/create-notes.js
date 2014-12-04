@@ -13,7 +13,7 @@ function addSegment(segment, notes) {
   $('#' + headingId).append('<span>' + segment + '</span>');
   $('#' + headingId).append('<button type="button" class="btn btn-link pull-right"><span id=' + removeSegId + ' class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
   $('#' + segDivId).append('<label>' + notes + '</label>');
-  segments.push({name: segment, notes: notes, position: segmentNumber});
+  segments.push({name: segment, notes: notes, position: segmentNumber, pageId: randomId});
   $('#' + removeSegId).click({segmentId: randomId}, removeSegment);
 }
 
@@ -34,8 +34,12 @@ function saveNotes() {
 
 function removeSegment(event) {
   var segmentId = event.data.segmentId;
-  segments.splice(position, 1);
-  $('#seg' + position).remove();
+  for (var i = 0; i < segments.length; i++) {
+    if (segments[i].pageId == segmentId) {
+      segments.splice(i, 1);
+    }
+  }
+  $('#seg' + segmentId).remove();
 }
 
 function createRandomId() {
