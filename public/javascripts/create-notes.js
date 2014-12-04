@@ -8,10 +8,10 @@ function addSegment(segment, notes) {
   var removeSegId = 'remove-seg' + randomId;
   $('#segment-list').append('<div id=' + segDivId + ' class="panel panel-default"></div>');
   $('#' + segDivId).append('<h4 id=' + headingId + ' class="panel-title panel-heading"></h4>');
-  $('#' + headingId).append('<span class="pull-left"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>&nbsp;');
-  $('#' + headingId).append('<span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>&nbsp;');
+  $('#' + headingId).append('<span class="pull-left"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>');
+  $('#' + headingId).append('<button type="button" class="btn btn-link"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
   $('#' + headingId).append('<span>' + segment + '</span>');
-  $('#' + headingId).append('<span id=' + removeSegId + ' class="glyphicon glyphicon-trash pull-right" aria-hidden="true"></span>');
+  $('#' + headingId).append('<button type="button" class="btn btn-link pull-right"><span id=' + removeSegId + ' class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
   $('#' + segDivId).append('<label>' + notes + '</label>');
   segments.push({name: segment, notes: notes, position: segmentNumber});
   $('#' + removeSegId).click({segmentId: randomId}, removeSegment);
