@@ -1,4 +1,5 @@
 var segments = [];
+var episodeId = '';
 
 function addSegment(segment, notes) {
   var segmentNumber = segments.length + 1;
@@ -20,17 +21,32 @@ function addSegment(segment, notes) {
 
 function saveNotes() {
   var showData = {showNumber: $('#showNumber').val(), podcast: 1, notes: "Default Notes", showTitle: $('#episodeTitle').val(), segments: segments};
-  $.ajax({type: "POST",
-    contentType: "application/json; charset=utf-8",
-    url: "/api/createshow",
-    data: JSON.stringify(showData),
-    dataType: "json",
-    success: function(data) {
-      $('#successMessage').show();
-      $('#successMessage').fadeOut(6000, function(){});
-      $('#segment-name').focus();
-    }
-  });
+  if (episodeId == ''){
+    $.ajax({type: "POST",
+      contentType: "application/json; charset=utf-8",
+      url: "/api/createshow",
+      data: JSON.stringify(showData),
+      dataType: "json",
+      success: function(data) {
+        episodeId = data._id;
+        $('#successMessage').show();
+        $('#successMessage').fadeOut(6000, function(){});
+        $('#segment-name').focus();
+      }
+    });
+  } else {
+    $.ajax({type: "PUT",
+      contentType: "application/json; charset=utf-8",
+      url: "/api/updateshow/" + episodeId,
+      data: JSON.stringify(showData),
+      dataType: "json",
+      success: function(data) {
+        $('#successMessage').show();
+        $('#successMessage').fadeOut(6000, function(){});
+        $('#segment-name').focus();
+      }
+    });    
+  }
 }
 
 function removeSegment(event) {

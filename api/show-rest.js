@@ -28,14 +28,14 @@ exports.update = function(req, res){
 		show.podcast = req.body.podcast;
 		show.notes = req.body.notes;
 		show.showTitle = req.body.showTitle;
-
+		show.segments = req.body.segments;
         return show.save( function( err ) {
             if( !err ) {
                 console.log( 'show updated' );
                 return res.send( show );
             } else {
                 console.log( err );
-                return res.send('ERROR');
+                return res.send(err.message);
             }
         });
     });
@@ -58,5 +58,6 @@ exports.create = function(req, res){
 		return console.log(err);
 	}
 	});
+	console.log(show);
 	return res.send(show);
 };
