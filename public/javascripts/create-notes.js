@@ -57,7 +57,6 @@ $(function() {
     $('#segment-name').val('');
     $('#segment-notes').val('');
   });
-
   $('#save').click(saveNotes);
 
 });
