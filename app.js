@@ -41,6 +41,7 @@ app.get('/create', function(req, res) {
 app.get('/api/show/:number', showrest.show);
 app.get('/api/allshows', showrest.allShows);
 app.post('/api/createshow', showrest.create);
+app.put('/api/updateshow/:id', showrest.update);
 
 var server = app.listen(3000, function(){
   console.log("Express server listening on port " + app.address().port, app.settings.env);

@@ -9,12 +9,13 @@ function addSegment(segment, notes) {
   $('#segment-list').append('<div id=' + segDivId + ' class="panel panel-default"></div>');
   $('#' + segDivId).append('<h4 id=' + headingId + ' class="panel-title panel-heading"></h4>');
   $('#' + headingId).append('<span class="pull-left"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>');
-  $('#' + headingId).append('<button type="button" class="btn btn-link"><span class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
+  $('#' + headingId).append('<button type="button" class="btn btn-link"><span id=down' + randomId + ' class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
   $('#' + headingId).append('<span>' + segment + '</span>');
   $('#' + headingId).append('<button type="button" class="btn btn-link pull-right"><span id=' + removeSegId + ' class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
   $('#' + segDivId).append('<label>' + notes + '</label>');
   segments.push({name: segment, notes: notes, position: segmentNumber, pageId: randomId});
   $('#' + removeSegId).click({segmentId: randomId}, removeSegment);
+  $('#down' + randomId).click({segmentId: randomId}, moveDown);
 }
 
 function saveNotes() {
@@ -40,6 +41,12 @@ function removeSegment(event) {
     }
   }
   $('#seg' + segmentId).remove();
+}
+
+function moveDown(event) {
+  var segmentId = event.data.segmentId;
+  console.log(segmentId);
+  console.log($('.segment-list div').get());
 }
 
 function createRandomId() {

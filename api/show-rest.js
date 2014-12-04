@@ -22,6 +22,25 @@ exports.allShows = function(req, res){
 	});
 };
 
+exports.update = function(req, res){
+    return ShowDB.findById( req.params.id, function( err, show ) {
+        show.showNumber = req.body.showNumber;
+		show.podcast = req.body.podcast;
+		show.notes = req.body.notes;
+		show.showTitle = req.body.showTitle;
+
+        return show.save( function( err ) {
+            if( !err ) {
+                console.log( 'show updated' );
+                return res.send( show );
+            } else {
+                console.log( err );
+                return res.send('ERROR');
+            }
+        });
+    });
+}
+
 exports.create = function(req, res){
     console.log("POST: ");
 	console.log(req.body);
