@@ -26,6 +26,6 @@ html
         .panel-body.col-md-4
           h3.ul.list-group Episodes
             each show, index in shows
-              li: a(href="/show/#{show.showNumber}") #{show.showNumber}
+              li: a(href="/create/#{show._id}") #{show.showNumber}
         .panel-body.col-md-2.col-md-offset-3
           a(href="/create").btn.btn-lg.btn-primary New Episode

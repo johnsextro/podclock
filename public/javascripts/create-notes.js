@@ -85,5 +85,8 @@ $(function() {
     $('#segment-notes').val('');
   });
   $('#save').click(saveNotes);
-
+  if ($('#episodeId').val() != ''){
+    episodeId = $('#episodeId').val();
+    console.log('Found Episode to Edit');
+  }
 });

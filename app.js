@@ -38,6 +38,9 @@ app.get('/list', routes.list);
 app.get('/create', function(req, res) {
   res.render('create', {title: 'New'});
 });
+app.get('/create/:episodeId', function(req, res) {
+  res.render('create', {title: 'Episode', episodeId: req.param('episodeId')});
+});
 app.get('/api/show/:number', showrest.show);
 app.get('/api/allshows', showrest.allShows);
 app.post('/api/createshow', showrest.create);
