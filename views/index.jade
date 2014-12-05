@@ -22,10 +22,10 @@ html
         p Helping you make the best info-tainment.  Let's get started.
 
     .container-fluid
-      .panel.panel-default.col-md-4
-        .panel-body.col-md-4
+      .panel.panel-default.col-md-5
+        .panel-body
           h3.ul.list-group Episodes
+            li: a(href="/create") Create an Episode
             each show, index in shows
-              li: a(href="/create/#{show._id}") #{show.showNumber}
-        .panel-body.col-md-2.col-md-offset-3
-          a(href="/create").btn.btn-lg.btn-primary New Episode
+              li: a(href="/create/#{show._id}") #{show.showNumber} #{show.showTitle}
+          
