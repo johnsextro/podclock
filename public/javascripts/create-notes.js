@@ -65,6 +65,11 @@ function moveDown(event) {
   console.log($('.segment-list div').get());
 }
 
+function loadEpisode(episode){
+  $('#showNumber').val(episode.showNumber);
+  $('#episodeTitle').val(episode.showTitle);
+}
+
 function createRandomId() {
   var hash = 0, i, chr, len;
   var current_date = new Date().toString()
@@ -87,6 +92,12 @@ $(function() {
   $('#save').click(saveNotes);
   if ($('#episodeId').val() != ''){
     episodeId = $('#episodeId').val();
-    console.log('Found Episode to Edit');
+    $.ajax({type: "GET",
+      contentType: "application/json; charset=utf-8",
+      url: "/api/show/" + episodeId,
+      success: function(data) {
+        loadEpisode(data);
+      }
+    });
   }
 });
