@@ -6,13 +6,13 @@
 var ShowDB = require('../schema/shows');
 
 exports.show = function(req, res){
-	var number = req.param('number');
+	var id = req.param('id');
 
-	shows = ShowDB.find().where('showNumber').equals(number).exec(function(err, shows) {
+	ShowDB.findById(id, function(err, show) {
 		if(err)	{
 			console.log(err);
 		} else {
-			res.render('notes', {title: 'Notes', show: shows[0]});
+			res.render('myclock', {title: 'Podclock', show: show});
 		}
 	});
 

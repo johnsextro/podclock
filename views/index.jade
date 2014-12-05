@@ -24,8 +24,9 @@ html
     .container-fluid
       .panel.panel-default.col-md-5
         .panel-body
-          h3.ul.list-group Episodes
-            li: a(href="/create") Create an Episode
+          h3.ul.list-group Episodes 
+            a(href="/create") [create an episode]
             each show, index in shows
               li: a(href="/create/#{show._id}") #{show.showNumber} #{show.showTitle}
+                
           

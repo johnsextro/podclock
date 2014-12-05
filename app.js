@@ -29,11 +29,7 @@ app.get('/', routes.index);
 app.get('/myclock', function(req, res){
   res.render('myclock', { title: 'Podclock' })
 });
-app.get('/podcast/:id', function (req, res) {
-  var podcast = req.param('id');
-  res.render('myclock', { title: podcast});
-});
-app.get('/show/:number', routes.show);
+app.get('/podcast/:id', routes.show);
 app.get('/list', routes.list);
 app.get('/create', function(req, res) {
   res.render('create', {title: 'New'});
