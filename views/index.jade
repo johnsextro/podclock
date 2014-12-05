@@ -27,6 +27,9 @@ html
           h3.ul.list-group Episodes 
             a(href="/create") [create an episode]
             each show, index in shows
-              li: a(href="/create/#{show._id}") #{show.showNumber} #{show.showTitle}
+              li #{show.showNumber} #{show.showTitle} 
+                a(href="/create/#{show._id}") edit
+                &nbsp; 
+                a(href="/podcast/#{show._id}") run
                 
           
