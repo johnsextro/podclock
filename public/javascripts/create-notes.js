@@ -1,22 +1,24 @@
 var segments = [];
 var episodeId = '';
 
-function addSegment(segment, notes) {
+function addSegment(segment, notes, id) {
   var segmentNumber = segments.length + 1;
-  var randomId = createRandomId();
-  var segDivId = 'seg' + randomId;
-  var headingId = 'heading' + randomId;
-  var removeSegId = 'remove-seg' + randomId;
+  if (id === undefined){
+    var id = createRandomId();
+  }
+  segments.push({name: segment, notes: notes, position: segmentNumber, pageId: id});  
+  var segDivId = 'seg' + id;
+  var headingId = 'heading' + id;
+  var removeSegId = 'remove-seg' + id;
   $('#segment-list').append('<div id=' + segDivId + ' class="panel panel-default"></div>');
   $('#' + segDivId).append('<h4 id=' + headingId + ' class="panel-title panel-heading"></h4>');
   $('#' + headingId).append('<span class="pull-left"><button type="button" class="btn btn-link"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></button>');
-  $('#' + headingId).append('<button type="button" class="btn btn-link"><span id=down' + randomId + ' class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
+  $('#' + headingId).append('<button type="button" class="btn btn-link"><span id=down' + id + ' class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
   $('#' + headingId).append('<span>' + segment + '</span>');
   $('#' + headingId).append('<button type="button" class="btn btn-link pull-right"><span id=' + removeSegId + ' class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
   $('#' + segDivId).append('<label>' + notes + '</label>');
-  segments.push({name: segment, notes: notes, position: segmentNumber, pageId: randomId});
-  $('#' + removeSegId).click({segmentId: randomId}, removeSegment);
-  $('#down' + randomId).click({segmentId: randomId}, moveDown);
+  $('#' + removeSegId).click({segmentId: id}, removeSegment);
+  $('#down' + id).click({segmentId: id}, moveDown);
 }
 
 function saveNotes() {
@@ -68,6 +70,9 @@ function moveDown(event) {
 function loadEpisode(episode){
   $('#showNumber').val(episode.showNumber);
   $('#episodeTitle').val(episode.showTitle);
+  for (var i = 0; i < episode.segments.length; i++) {
+    addSegment(episode.segments[i].name, episode.segments[i].notes, episode.segments[i]._id);
+  }
 }
 
 function createRandomId() {
