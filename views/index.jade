@@ -19,7 +19,6 @@ html
       .jumbotron
         h1 Welcome to Podclock!
         p Helping you make the best info-tainment.  Let's get started.
-
     .container-fluid
       .panel.panel-default.col-md-5
         .panel-body
@@ -27,8 +26,5 @@ html
             a(href="/create") [create an episode]
             each show, index in shows
               li #{show.showNumber} #{show.showTitle} 
-                a(href="/create/#{show._id}") edit
-                &nbsp; 
+                a(href="/create/#{show._id}") edit 
                 a(href="/podcast/#{show._id}") run
-                
-          
