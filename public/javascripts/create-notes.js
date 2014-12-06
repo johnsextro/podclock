@@ -105,4 +105,6 @@ $(function() {
       }
     });
   }
+  var quill = new Quill('#basic-editor', {theme: 'snow'});
+  quill.addModule('toolbar', { container: '#basic-toolbar' });
 });

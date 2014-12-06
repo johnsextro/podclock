@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css')
+    script(src="//cdn.quilljs.com/0.19.7/quill.js")
     script(src="../javascripts/jquery-1.11.0.js")
     script(src='../javascripts/create-notes.js')
   body
@@ -34,7 +35,8 @@ html
         .panel.panel-default.col-md-6
           .panel-body
             input.form-control#segment-name(type='text', placeholder='Segment Name/Topic')
-            textarea.form-control#segment-notes(rows="10", placeholder='Discuss notes')
+            div#basic-toolbar
+            div#basic-editor
             button.btn.btn-default#add-segment Add Segment
         .panel.panel-default.col-md-6
           .panel-body#segment-list
