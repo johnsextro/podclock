@@ -90,7 +90,7 @@ function createRandomId() {
 $(function() {
   $('#successMessage').hide();
   $('#add-segment').click(function(event) {
-    addSegment($('#segment-name').val(), $('#segment-notes').val() );
+    addSegment($('#segment-name').val(), CKEDITOR.instances.editor.getData() );
     $('#segment-name').val('');
     $('#segment-notes').val('');
   });
@@ -105,6 +105,5 @@ $(function() {
       }
     });
   }
-  var quill = new Quill('#basic-editor', {theme: 'snow'});
-  quill.addModule('toolbar', { container: '#basic-toolbar' });
+  CKEDITOR.replace('editor');
 });
