@@ -6,6 +6,7 @@ html
     script(src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js")
     script(src="../javascripts/jquery-1.11.0.js")
     script(src='../javascripts/create-notes.js')
+    script(src='../javascripts/bootstrap-growl.min.js')
   body
     .navbar.navbar-default
       .container-fluid
@@ -15,7 +16,14 @@ html
         .collapse.navbar-collapse
           ul.nav.navbar-nav
             li.active: a(href="/") Home
-    div.alert.alert-success#successMessage Episode Saved
+    div.alert(role="success", data-growl="container")
+      button.close(type="button",data-growl="dismiss")
+        span(aria-hidden="true") ×
+        span.sr-only Close
+      span(data-growl="icon")
+      span(data-growl="title")
+      span(data-growl="message")
+      a(href="#",data-growl="url")
     input.form-control#episodeId(type='hidden', value= episodeId)
     .container-fluid
       .row-fluid

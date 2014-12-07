@@ -31,9 +31,9 @@ function saveNotes() {
       dataType: "json",
       success: function(data) {
         episodeId = data._id;
-        $('#successMessage').show();
-        $('#successMessage').fadeOut(6000, function(){});
-        $('#segment-name').focus();
+        $.growl("Episode notes saved!", {
+          type: "success"
+        });
       }
     });
   } else {
@@ -43,9 +43,9 @@ function saveNotes() {
       data: JSON.stringify(showData),
       dataType: "json",
       success: function(data) {
-        $('#successMessage').show();
-        $('#successMessage').fadeOut(6000, function(){});
-        $('#segment-name').focus();
+        $.growl("Episode notes saved!", {
+          type: "success"
+        });
       }
     });    
   }
@@ -88,7 +88,7 @@ function createRandomId() {
 }
 
 $(function() {
-  $('#successMessage').hide();
+  $('.alert').hide();
   $('#add-segment').click(function(event) {
     addSegment($('#segment-name').val(), CKEDITOR.instances.editor.getData() );
     $('#segment-name').val('');
