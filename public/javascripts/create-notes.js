@@ -16,7 +16,7 @@ function addSegment(segment, notes, id) {
   $('#' + headingId).append('<button type="button" class="btn btn-link"><span id=down' + id + ' class="glyphicon glyphicon-arrow-down" aria-hidden="true"></span></span>');
   $('#' + headingId).append('<span>' + segment + '</span>');
   $('#' + headingId).append('<button type="button" class="btn btn-link pull-right"><span id=' + removeSegId + ' class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>');
-  $('#' + segDivId).append('<label>' + notes + '</label>');
+  $('#' + segDivId).append('<span>' + notes + '</span>');
   $('#' + removeSegId).click({segmentId: id}, removeSegment);
   $('#down' + id).click({segmentId: id}, moveDown);
 }

@@ -18,17 +18,17 @@ html
 .container-fluid
   .row-fluid
     .row
+      button.btn-lg.btn-danger.pull-right#reset-link Reset
       button.btn-lg.btn-primary.center-block#start-link 
         span#clock-label Start/Pause/Resume
         h2#podclock 00:00:00
-      button.btn-lg.btn-danger.pull-right#reset-link Reset
   .row-fluid  
     .panel.panel-default.col-md-8
       .panel-body
         each segment, index in show.segments
           .panel.panel-default
             h4.panel-title.panel-heading #{segment.name}
-            label #{segment.notes}
+            !{segment.notes}
     .panel.panel-default.col-md-4
       .panel.panel-body.panel-default
         div.input-group
