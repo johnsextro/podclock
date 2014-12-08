@@ -23,8 +23,8 @@ html
       .panel.panel-default.col-md-5
         .panel-body
           h3.ul.list-group Episodes 
-            a(href="/create") [create an episode]
+            a(href="/episode") [create an episode]
             each show, index in shows
               li #{show.showNumber} #{show.showTitle} 
-                a(href="/create/#{show._id}") edit 
+                a(href="/episode/#{show._id}") edit 
                 a(href="/podcast/#{show._id}") run

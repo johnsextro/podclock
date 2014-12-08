@@ -27,10 +27,10 @@ express.compiler.compilers.less.compile = function(str, fn){
 
 app.get('/', routes.index);
 app.get('/podcast/:id', routes.show);
-app.get('/create', function(req, res) {
+app.get('/episode', function(req, res) {
   res.render('create', {title: 'New'});
 });
-app.get('/create/:episodeId', function(req, res) {
+app.get('/episode/:episodeId', function(req, res) {
   res.render('create', {title: 'Episode', episodeId: req.param('episodeId')});
 });
 

@@ -59,9 +59,10 @@ exports.registerSocketEvents = function(server) {
       socket.broadcast.emit('resetAllShowData');
     });
 
-    socket.on('titleSuggested', function(suggestion) {
+    socket.on('titleSuggested', function(suggestion, episodeId) {
       socket.broadcast.emit('addTitleSuggestion', suggestion);
       suggestedTitles.push(suggestion);
+      console.log(episodeId);
     });
 
     socket.on('showEventTimeCode', function(showEvent) {

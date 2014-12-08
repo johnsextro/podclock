@@ -17,7 +17,7 @@ function resetAllShowData() {
 }
 
 function submitTitleSuggestion() {
-  socket.emit('titleSuggested', $('#title-suggestion').val());
+  socket.emit('titleSuggested', $('#title-suggestion').val(), $('#episodeId').val());
   updateTitleSuggestion($('#title-suggestion').val());
   $('#title-suggestion').val('');
 }
