@@ -26,17 +26,15 @@ express.compiler.compilers.less.compile = function(str, fn){
 // Routes
 
 app.get('/', routes.index);
-app.get('/myclock', function(req, res){
-  res.render('myclock', { title: 'Podclock' })
-});
 app.get('/podcast/:id', routes.show);
-app.get('/list', routes.list);
 app.get('/create', function(req, res) {
   res.render('create', {title: 'New'});
 });
 app.get('/create/:episodeId', function(req, res) {
   res.render('create', {title: 'Episode', episodeId: req.param('episodeId')});
 });
+
+// REST Routes for the API
 app.get('/api/show/:id', showrest.show);
 app.get('/api/allshows', showrest.allShows);
 app.post('/api/createshow', showrest.create);

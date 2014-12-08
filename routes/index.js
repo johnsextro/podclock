@@ -27,13 +27,3 @@ exports.index = function(req, res){
 		}
 	});	
 };
-
-exports.list = function(req, res) {
-	shows = ShowDB.find().sort('-showNumber').exec(function(err, shows) {
-		if(err)	{
-			console.log(err);
-		} else {
-			res.render('listshows', {title: 'Shows', shows: shows});
-		}
-	}); 
-};
