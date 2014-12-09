@@ -61,8 +61,7 @@ exports.create = function(req, res){
 
 exports.addTitleSuggestion = function(req, res){
     return ShowDB.findById( req.params.id, function( err, show ) {
-    	console.log(req.body.titleSuggestion);
-		show.titleSuggestions = show.titleSuggestions.push(req.body.titleSuggestion);
+		show.titleSuggestions.push(req.body.titleSuggestion);
         return show.save( function( err ) {
             if( !err ) {
                 console.log( 'show updated' );
