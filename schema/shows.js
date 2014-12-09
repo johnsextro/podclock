@@ -12,5 +12,6 @@ module.exports = mongoose.model('shows', {
 	podcast: Number,
 	notes: String,
 	showTitle: String,
-	segments: [segments]
+	segments: [segments],
+	titleSuggestions: [String]
 });

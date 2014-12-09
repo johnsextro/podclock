@@ -39,11 +39,9 @@ exports.update = function(req, res){
             }
         });
     });
-}
+};
 
 exports.create = function(req, res){
-    console.log("POST: ");
-	console.log(req.body);
 	var show = new ShowDB({
 		showNumber: req.body.showNumber,
 		podcast: req.body.podcast,
@@ -52,12 +50,27 @@ exports.create = function(req, res){
 		segments: req.body.segments
 	});
 	show.save(function (err) {
-	if (!err) {
-		return console.log("created");
-	} else {
-		return console.log(err);
-	}
+		if (!err) {
+			return console.log("created");
+		} else {
+			return console.log(err);
+		}
 	});
-	console.log(show);
 	return res.send(show);
+};
+
+exports.addTitleSuggestion = function(req, res){
+    return ShowDB.findById( req.params.id, function( err, show ) {
+    	console.log(req.body.titleSuggestion);
+		show.titleSuggestions = show.titleSuggestions.push(req.body.titleSuggestion);
+        return show.save( function( err ) {
+            if( !err ) {
+                console.log( 'show updated' );
+                return res.send( show );
+            } else {
+                console.log( err );
+                return res.send(err.message);
+            }
+        });
+    });
 };

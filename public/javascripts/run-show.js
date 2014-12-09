@@ -17,9 +17,19 @@ function resetAllShowData() {
 }
 
 function submitTitleSuggestion() {
-  socket.emit('titleSuggested', $('#title-suggestion').val(), $('#episodeId').val());
-  updateTitleSuggestion($('#title-suggestion').val());
-  $('#title-suggestion').val('');
+  var data = {titleSuggestion: $('#title-suggestion').val()}
+  $.ajax({type: "PUT",
+    contentType: "application/json; charset=utf-8",
+    url: "/api/addTitleSuggestion/" + $('#episodeId').val(),
+    data: JSON.stringify(data),
+    dataType: "json",
+    success: function(data) {
+      console.log(data.titleSuggestions);
+      socket.emit('titleSuggested', $('#title-suggestion').val());
+      updateTitleSuggestion($('#title-suggestion').val());
+      $('#title-suggestion').val('');
+    }
+  });
 }
 
 function addEventButton() {
